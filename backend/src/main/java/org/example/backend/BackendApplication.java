@@ -1,17 +1,20 @@
 package org.example.backend;
 
 import jakarta.transaction.Transactional;
+import org.example.backend.config.RsaKeyProperties;
 import org.example.backend.domain.*;
 import org.example.backend.persistence.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+@EnableConfigurationProperties(RsaKeyProperties.class)
 @SpringBootApplication
 public class BackendApplication {
 
