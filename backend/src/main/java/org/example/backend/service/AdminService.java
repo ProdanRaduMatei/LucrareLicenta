@@ -14,6 +14,10 @@ public class AdminService {
     @Autowired
     private AdminRepository adminRepository;
 
+    public Admin findAdminByEmailAndPassword(String email, String password) {
+        return adminRepository.findByEmailAndPassword(email, password);
+    }
+
     public List<Admin> getAllAdmins() {
         return adminRepository.findAll();
     }

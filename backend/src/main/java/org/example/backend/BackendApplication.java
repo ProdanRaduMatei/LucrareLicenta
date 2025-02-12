@@ -1,20 +1,17 @@
 package org.example.backend;
 
 import jakarta.transaction.Transactional;
-import org.example.backend.config.RsaKeyProperties;
 import org.example.backend.domain.*;
 import org.example.backend.persistence.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-@EnableConfigurationProperties(RsaKeyProperties.class)
 @SpringBootApplication
 public class BackendApplication {
 
@@ -92,10 +89,10 @@ public class BackendApplication {
 //            seatRepository.saveAll(List.of(seat1, seat2, seat3, seat4, seat5, seat6, seat7, seat8));
 //
 //            // 6) Bookings (creăm abia după ce seat & user sunt salvate)
-//            Booking booking1 = createBooking("2025-08-02T00:00:00Z", seat1, user1);
-//            Booking booking2 = createBooking("2025-08-02T00:00:00Z", seat2, user2);
-//            Booking booking3 = createBooking("2025-08-02T00:00:00Z", seat3, user1);
-//            Booking booking4 = createBooking("2025-08-02T00:00:00Z", seat1, user2);
+//            Booking booking1 = createBooking("2025-02-18T00:00:00Z", seat1, user1);
+//            Booking booking2 = createBooking("2025-02-18T00:00:00Z", seat2, user2);
+//            Booking booking3 = createBooking("2025-02-18T00:00:00Z", seat3, user1);
+//            Booking booking4 = createBooking("2025-02-18T00:00:00Z", seat1, user2);
 //
 //            // ---- Salvăm Booking ----
 //            bookingRepository.saveAll(List.of(booking1, booking2, booking3, booking4));

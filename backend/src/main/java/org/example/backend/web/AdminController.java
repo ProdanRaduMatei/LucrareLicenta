@@ -13,13 +13,13 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @GetMapping
-    public List<Admin> getAllAdmins() {
-        return adminService.getAllAdmins();
-    }
-
-    @PostMapping
-    public Admin addAdmin(@RequestBody Admin admin) {
+    @PostMapping("/register")
+    public Admin Register(@RequestBody Admin admin) {
         return adminService.createAdmin(admin);
+    }
+    @PostMapping("/login")
+    public Admin Login(@RequestBody String email, String password) {
+        Admin oldAdmin = adminService.findAdminByEmailAndPassword(email, password);
+        return oldAdmin;
     }
 }

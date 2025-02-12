@@ -3,9 +3,7 @@ package org.example.backend.web;
 import org.example.backend.domain.User;
 import org.example.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,8 +13,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    @PostMapping("/register")
+    public User Register(@RequestBody User user) {
+        return userService.createUser(user);
+    }
+    @PostMapping("/login")
+    public User Login(@RequestBody String email, String password) {
+        User oldUser = userService.findByEmailAndPassword(email, password);
+        return oldUser;
     }
 }
