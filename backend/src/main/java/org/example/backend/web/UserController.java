@@ -14,9 +14,15 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public User Register(@RequestBody User user) {
+    public User Register(@RequestBody UserDTO userDTO) {
+        User user = new User();
+        user.setName(userDTO.getEmail().substring(0, userDTO.getEmail().indexOf('@')));
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
+
         return userService.createUser(user);
     }
+
     @PostMapping("/login")
     public User Login(@RequestBody String email, String password) {
         User oldUser = userService.findByEmailAndPassword(email, password);

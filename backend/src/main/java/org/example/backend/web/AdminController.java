@@ -14,7 +14,11 @@ public class AdminController {
     private AdminService adminService;
 
     @PostMapping("/register")
-    public Admin Register(@RequestBody Admin admin) {
+    public Admin Register(@RequestBody AdminDTO adminDTO) {
+        Admin admin = new Admin();
+        admin.setName(adminDTO.getEmail().substring(0, adminDTO.getEmail().indexOf('@')));
+        admin.setEmail(adminDTO.getEmail());
+        admin.setPassword(adminDTO.getPassword());
         return adminService.createAdmin(admin);
     }
     @PostMapping("/login")

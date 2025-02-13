@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'SignInPage.dart';
-import 'SignUpPage.dart';
+import 'Login.dart';
+import 'Register.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,10 +13,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',
       theme: ThemeData(primarySwatch: Colors.purple),
-      initialRoute: '/signin',
+      initialRoute: '/login',
       routes: {
-        '/signin': (context) => SignInPage(),
-        '/signup': (context) => SignUpPage(),
+        '/register': (context) => Register(),
+        '/login': (context) => Login(),
       },
     );
   }
