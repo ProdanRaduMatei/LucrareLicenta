@@ -3,6 +3,8 @@ package org.example.backend.web;
 import org.example.backend.domain.User;
 import org.example.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,13 +21,16 @@ public class UserController {
         user.setName(userDTO.getEmail().substring(0, userDTO.getEmail().indexOf('@')));
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());
-
         return userService.createUser(user);
     }
 
     @PostMapping("/login")
-    public User Login(@RequestBody String email, String password) {
-        User oldUser = userService.findByEmailAndPassword(email, password);
-        return oldUser;
+    public ResponseEntity<?> Login(@RequestBody UserDTO userDTO) {
+        User user = userService.findUserByEmailAndPassword(userDTO.getEmail(), userDTO.getPassword());
+
+        if (user != null) {
+            return ResponseEntity.ok(new UserDTO(user));
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
     }
 }

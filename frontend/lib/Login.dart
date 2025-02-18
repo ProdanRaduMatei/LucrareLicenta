@@ -18,7 +18,7 @@ class _LoginState extends State<Login> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
-  final String url = "http://localhost:8080/user/login";
+  final String url = "http://127.0.0.1:8080/user/login";
 
   Future<void> save() async {
     FocusScope.of(context).unfocus();
@@ -165,12 +165,7 @@ class _LoginState extends State<Login> {
                       ),
                       Center(
                         child: TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => Dashboard()), // ✅ Navigate to Register
-                            );
-                          },
+                          onPressed: save,
                           child: Text(
                             "GOOO",
                             style: GoogleFonts.roboto(
