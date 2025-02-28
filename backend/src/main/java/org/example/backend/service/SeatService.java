@@ -38,4 +38,8 @@ public class SeatService {
     public void deleteSeat(Long id) {
         seatRepository.deleteById(id);
     }
+
+    public List<Seat> getSeatsByStoreyName(String storeyName) {
+        return seatRepository.findByStoreyName(storeyName);
+    }
 }

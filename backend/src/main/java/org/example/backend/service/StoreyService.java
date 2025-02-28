@@ -19,6 +19,10 @@ public class StoreyService {
         return storeyRepository.findAll();
     }
 
+    public List<String> getAllStoreyNames() {
+        return storeyRepository.findAll().stream().map(Storey::getName).toList();
+    }
+
     public Optional<Storey> getStoreyById(Long id) {
         return storeyRepository.findById(id);
     }
@@ -37,5 +41,9 @@ public class StoreyService {
 
     public void deleteStorey(Long id) {
         storeyRepository.deleteById(id);
+    }
+
+    public Optional<Storey> getStoreyByName(String name) {
+        return Optional.ofNullable(storeyRepository.findByName(name));
     }
 }

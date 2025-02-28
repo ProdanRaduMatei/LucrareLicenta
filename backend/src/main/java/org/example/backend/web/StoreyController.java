@@ -15,8 +15,8 @@ public class StoreyController {
     @Autowired
     private StoreyService storeyService;
 
-    @GetMapping
-    public List<Storey> getAllStoreys() {
-        return storeyService.getAllStoreys();
+    @GetMapping("/all")
+    public List<String> getAllStoreyNames() {
+        return storeyService.getAllStoreyNames();
     }
 }

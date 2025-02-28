@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/User.dart';
-import 'Login.dart';
-import 'Register.dart';
+import 'SeatBookingScreen.dart';
 import 'SeatSurferTextWidget.dart';
 import 'authentication/AdminRegister.dart';
 import 'package:frontend/authentication/AdminLogin.dart';
@@ -30,7 +28,7 @@ class MyApp extends StatelessWidget {
         '/adminLogin': (context) => AdminLogin(),
         "/userLogin": (context) => UserLogin(),
         "/dashboard": (context) => Dashboard(),
-        "/login": (context) => Login(),
+        "/seatBookingScreen": (context) => SeatBookingScreen(),
       },
     );
   }
