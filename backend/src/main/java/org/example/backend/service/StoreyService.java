@@ -43,7 +43,7 @@ public class StoreyService {
         storeyRepository.deleteById(id);
     }
 
-    public Optional<Storey> getStoreyByName(String name) {
-        return Optional.ofNullable(storeyRepository.findByName(name));
+    public Storey findStoreyByName(String name) {
+        return storeyRepository.findStoreyByName(name);
     }
 }

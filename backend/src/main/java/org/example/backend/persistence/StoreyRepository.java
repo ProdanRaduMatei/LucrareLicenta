@@ -8,5 +8,5 @@ import java.util.List;
 
 @RepositoryRestResource
 public interface StoreyRepository extends JpaRepository<Storey, Long> {
-    Storey findByName(String name);
+    Storey findStoreyByName(String name);
 }

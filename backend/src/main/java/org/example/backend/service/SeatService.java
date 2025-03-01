@@ -42,4 +42,8 @@ public class SeatService {
     public List<Seat> getSeatsByStoreyName(String storeyName) {
         return seatRepository.findByStoreyName(storeyName);
     }
+
+    public Seat findSeatByColAndRowAndStoreyName(Integer col, Integer line, String storeyName) {
+        return seatRepository.findByColAndLineAndStoreyName(col, line, storeyName);
+    }
 }

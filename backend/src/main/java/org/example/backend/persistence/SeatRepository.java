@@ -9,4 +9,5 @@ import java.util.List;
 @RepositoryRestResource
 public interface SeatRepository extends JpaRepository<Seat, Long> {
     List<Seat> findByStoreyName(String storeyName);
+    Seat findByColAndLineAndStoreyName(Integer col, Integer line, String storeyName);
 }

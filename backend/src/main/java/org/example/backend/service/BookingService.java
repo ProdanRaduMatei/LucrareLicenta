@@ -2,6 +2,8 @@ package org.example.backend.service;
 
 import io.micrometer.core.instrument.binder.jetty.InstrumentedQueuedThreadPool;
 import org.example.backend.domain.Booking;
+import org.example.backend.domain.Seat;
+import org.example.backend.domain.User;
 import org.example.backend.persistence.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,10 +26,6 @@ public class BookingService {
         return bookingRepository.findById(id);
     }
 
-    public Booking createBooking(Booking booking) {
-        return bookingRepository.save(booking);
-    }
-
     public Booking updateBooking(Long id, Booking bookingDetails) {
         Booking booking = bookingRepository.findById(id).orElseThrow();
         booking.setDate(bookingDetails.getDate());
@@ -43,5 +41,14 @@ public class BookingService {
 
     public boolean isSeatBooked(Long seatId, Instant date) {
         return bookingRepository.existsBySeatIdAndDate(seatId, date);
+    }
+
+    public void createBooking(User user, Seat seat, Instant date) {
+        Booking booking = new Booking();
+        booking.setUser(user);
+        booking.setSeat(seat);
+        booking.setDate(date);
+        booking.setConfirmed(true);
+        bookingRepository.save(booking);
     }
 }
