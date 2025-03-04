@@ -5,6 +5,7 @@ import 'authentication/AdminRegister.dart';
 import 'package:frontend/authentication/AdminLogin.dart';
 import 'authentication/UserRegister.dart';
 import 'authentication/UserLogin.dart';
+import 'UserBookings.dart';
 import 'Dashboard.dart';
 
 void main() {
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         "/userLogin": (context) => UserLogin(),
         "/dashboard": (context) => Dashboard(),
         "/seatBookingScreen": (context) => SeatBookingScreen(),
+        "/userBookings": (context) => UserBookings(),
       },
     );
   }

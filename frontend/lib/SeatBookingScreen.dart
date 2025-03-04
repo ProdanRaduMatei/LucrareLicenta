@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
+import 'UserBookings.dart'; // ✅ Import the UserBooking screen
 
 class SeatBookingScreen extends StatefulWidget {
   @override
@@ -57,9 +58,6 @@ class _SeatBookingScreenState extends State<SeatBookingScreen> {
           'storeyName': selectedStorey,
         }),
       );
-
-      print("Response Code: ${response.statusCode}");
-      print("Response Body: ${response.body}");
 
       if (response.statusCode == 200) {
         List<dynamic> data = json.decode(response.body);
@@ -137,6 +135,12 @@ class _SeatBookingScreenState extends State<SeatBookingScreen> {
       if (response.statusCode == 200 || response.statusCode == 201) {
         print("Booking successful");
         fetchSeatLayout();
+
+        // ✅ Navigate to UserBooking screen after successful booking
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => UserBookings()),
+        );
       } else {
         print("Booking failed: ${response.statusCode}");
       }
@@ -159,7 +163,7 @@ class _SeatBookingScreenState extends State<SeatBookingScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView( // ✅ Wrap Column with SingleChildScrollView
+      body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
@@ -204,7 +208,7 @@ class _SeatBookingScreenState extends State<SeatBookingScreen> {
               ),
             ),
             SingleChildScrollView(
-              scrollDirection: Axis.horizontal, // ✅ Allow horizontal scrolling
+              scrollDirection: Axis.horizontal,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(seatLayout.length, (row) {
@@ -239,13 +243,17 @@ class _SeatBookingScreenState extends State<SeatBookingScreen> {
             ),
             SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton( // ✅ Added padding around button
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              child: ElevatedButton(
                 onPressed: bookSeats,
                 child: Text("Confirm Booking"),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 14),
+                  textStyle: TextStyle(fontSize: 18),
+                  minimumSize: Size(double.infinity, 50),
+                ),
               ),
             ),
-            SizedBox(height: 20),
           ],
         ),
       ),
