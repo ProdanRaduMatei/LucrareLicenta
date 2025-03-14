@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -44,5 +45,14 @@ public class BookingController {
             bookingService.createBooking(user, seat, date);
         }
         return ResponseEntity.ok("Booking created successfully");
+    }
+
+    @PostMapping("/bookings")
+    public ResponseEntity<List<Booking>> getBookings(@RequestBody String userEmail) {
+        List<Booking> bookings = bookingService.getUserBookings(userEmail);
+        if (bookings.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(bookings);
     }
 }

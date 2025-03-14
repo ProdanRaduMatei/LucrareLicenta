@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,5 +51,9 @@ public class BookingService {
         booking.setDate(date);
         booking.setConfirmed(true);
         bookingRepository.save(booking);
+    }
+
+    public List<Booking> getUserBookings(String userEmail) {
+        return bookingRepository.findByUserEmail(userEmail);
     }
 }
