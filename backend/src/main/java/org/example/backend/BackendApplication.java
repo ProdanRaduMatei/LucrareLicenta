@@ -1,16 +1,16 @@
 package org.example.backend;
 
-import jakarta.transaction.Transactional;
-import org.example.backend.domain.*;
-import org.example.backend.persistence.*;
-import org.springframework.boot.CommandLineRunner;
+//import jakarta.transaction.Transactional;
+//import org.example.backend.domain.*;
+//import org.example.backend.persistence.*;
+//import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Bean;
 
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
+//import java.time.Instant;
+//import java.util.ArrayList;
+//import java.util.List;
 
 @SpringBootApplication
 public class BackendApplication {

@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -47,12 +46,25 @@ public class BookingController {
         return ResponseEntity.ok("Booking created successfully");
     }
 
-    @PostMapping("/bookings")
-    public ResponseEntity<List<Booking>> getBookings(@RequestBody String userEmail) {
-        List<Booking> bookings = bookingService.getUserBookings(userEmail);
-        if (bookings.isEmpty()) {
-            return ResponseEntity.noContent().build();
+    @GetMapping("/bookings")
+    public ResponseEntity<int[]> getUserBookings(@RequestBody UserEmailDTO userEmailDTO) {
+        // Ensure the request contains an email
+        if (userEmailDTO == null || userEmailDTO.getUserEmail() == null || userEmailDTO.getUserEmail().isEmpty()) {
+            return ResponseEntity.badRequest().build(); // Return 400 Bad Request
         }
-        return ResponseEntity.ok(bookings);
+
+        // Find user by email
+        User user = userService.findUserByEmail(userEmailDTO.getUserEmail());
+        if (user == null) {
+            return ResponseEntity.notFound().build(); // Return 404 Not Found
+        }
+
+        // Get user bookings
+        List<Booking> bookings = bookingService.getUserBookings(user.getId());
+        int[] seats = new int[bookings.size()];
+        for (Booking booking : bookings) {
+            seats[bookings.indexOf(booking)] = booking.getSeat().getId().intValue();
+        }
+        return ResponseEntity.ok(seats);
     }
 }

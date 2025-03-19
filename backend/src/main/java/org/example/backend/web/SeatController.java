@@ -1,10 +1,8 @@
 package org.example.backend.web;
 
 import org.example.backend.domain.Seat;
-import org.example.backend.domain.Storey;
 import org.example.backend.service.BookingService;
 import org.example.backend.service.SeatService;
-import org.example.backend.service.StoreyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

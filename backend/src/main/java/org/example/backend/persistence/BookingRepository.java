@@ -10,5 +10,6 @@ import java.util.List;
 @RepositoryRestResource
 public interface BookingRepository extends JpaRepository<Booking, Long> {
     boolean existsBySeatIdAndDate(Long seatId, Instant date);
-    List<Booking> findByUserEmail(String userEmail);
+
+    List<Booking> findByUserId(Long userId);
 }

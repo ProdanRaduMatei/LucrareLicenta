@@ -1,7 +1,5 @@
 package org.example.backend.web;
 
-import java.time.Instant;
-
 public class LayoutDTO {
     private String date;
     private String storeyName;

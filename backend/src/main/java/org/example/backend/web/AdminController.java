@@ -7,8 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.example.backend.service.AdminService;
 
-import java.util.List;
-
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/admin")

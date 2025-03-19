@@ -1,6 +1,5 @@
 package org.example.backend.service;
 
-import io.micrometer.core.instrument.binder.jetty.InstrumentedQueuedThreadPool;
 import org.example.backend.domain.Booking;
 import org.example.backend.domain.Seat;
 import org.example.backend.domain.User;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,7 +51,7 @@ public class BookingService {
         bookingRepository.save(booking);
     }
 
-    public List<Booking> getUserBookings(String userEmail) {
-        return bookingRepository.findByUserEmail(userEmail);
+    public List<Booking> getUserBookings(Long userId) {
+        return bookingRepository.findByUserId(userId);
     }
 }

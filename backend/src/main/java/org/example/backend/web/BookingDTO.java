@@ -7,6 +7,8 @@ public class BookingDTO {
     private String storeyName;
     private String userEmail;
     private List<SeatDTO> selectedSeats;
+    private Integer row;
+    private Integer col;
 
     public String getDate() {
         return date;
@@ -33,4 +35,19 @@ public class BookingDTO {
     public void setSelectedSeats(List<SeatDTO> selectedSeats) {
         this.selectedSeats = selectedSeats;
     }
+
+    public Integer getRow() {
+        return row;
+    }
+    public void setRow(Integer row) {
+        this.row = row;
+    }
+
+    public Integer getCol() {
+        return col;
+    }
+    public void setCol(Integer col) {
+        this.col = col;
+    }
+
 }
