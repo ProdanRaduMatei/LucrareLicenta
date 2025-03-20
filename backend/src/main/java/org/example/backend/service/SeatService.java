@@ -3,9 +3,7 @@ package org.example.backend.service;
 import org.example.backend.domain.Seat;
 import org.example.backend.persistence.SeatRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class SeatService {
@@ -19,8 +17,8 @@ public class SeatService {
         return seatRepository.findAll();
     }
 
-    public Optional<Seat> getSeatById(Long id) {
-        return seatRepository.findById(id);
+    public Seat getSeatById(Long id) {
+        return seatRepository.findById(id).orElseThrow();
     }
 
     public Seat createSeat(Seat seat) {

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/seats")
@@ -26,29 +27,37 @@ public class SeatController {
 
     @PostMapping("/layout")
     public ResponseEntity<int[][]> getSeatLayout(@RequestBody LayoutDTO layoutDTO) {
-        // Parse the date string into an Instant.
         Instant instantDate = Instant.parse(layoutDTO.getDate());
-        // Set the time to 00:00:00 by subtracting the seconds passed since midnight.
         instantDate = instantDate.minusSeconds(instantDate.getEpochSecond() % 86400);
-
-        // Retrieve all seats for the given storey.
         String storeyName = layoutDTO.getStoreyName();
         List<Seat> seats = seatService.getSeatsByStoreyName(storeyName);
-
-        // Create a 25x25 seat matrix initialized to 0.
         int[][] seatMatrix = new int[25][25];
         for (int i = 0; i < 25; i++) {
             for (int j = 0; j < 25; j++) {
                 seatMatrix[i][j] = 0;
             }
         }
-
-        // For each seat, check if it's booked at the given date.
         for (Seat seat : seats) {
             boolean isBooked = bookingService.isSeatBooked(seat.getId(), instantDate);
             seatMatrix[seat.getLine()][seat.getCol()] = isBooked ? 2 : 1;
         }
-
         return ResponseEntity.ok(seatMatrix);
+    }
+
+    @PostMapping("/seat")
+    public ResponseEntity<int[]> getLineCol(@RequestBody Map<String, Integer> requestBody) {
+        Integer seatId = requestBody.get("seatId");
+        if (seatId == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        Long lSeatId = seatId.longValue();
+        Seat seat = seatService.getSeatById(lSeatId);
+        if (seat == null) {
+            return ResponseEntity.notFound().build();
+        }
+        int[] lineCol = new int[2];
+        lineCol[0] = seat.getLine();
+        lineCol[1] = seat.getCol();
+        return ResponseEntity.ok(lineCol);
     }
 }
