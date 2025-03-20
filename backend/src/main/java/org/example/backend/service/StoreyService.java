@@ -46,4 +46,8 @@ public class StoreyService {
     public Storey findStoreyByName(String name) {
         return storeyRepository.findStoreyByName(name);
     }
+
+    public String getStoreyNameById(Long id) {
+        return storeyRepository.findById(id).map(Storey::getName).orElse(null);
+    }
 }
