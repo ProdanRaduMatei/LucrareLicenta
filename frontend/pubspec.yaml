@@ -48,6 +48,7 @@ dev_dependencies:
   http: any
   google_fonts: any
   intl: any
+  shared_preferences: ^2.0.15
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

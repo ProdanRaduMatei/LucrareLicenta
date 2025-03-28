@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserLogin extends StatefulWidget {
   UserLogin({Key? key}) : super(key: key);
@@ -53,6 +54,10 @@ class _UserLoginState extends State<UserLogin> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Login successful!')),
         );
+
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('userEmail', _emailController.text.trim());
+
         Navigator.pushReplacementNamed(context, '/seatBookingScreen');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(

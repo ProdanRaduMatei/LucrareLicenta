@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AdminRegister extends StatefulWidget {
   AdminRegister({Key? key}) : super(key: key);
@@ -37,10 +38,14 @@ class _AdminRegisterState extends State<AdminRegister> {
       );
 
       if (response.statusCode == 201 || response.statusCode == 200) {
+        // ✅ Save registered admin email
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('adminEmail', _emailController.text.trim());
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Account created successfully!')),
         );
-        Navigator.pop(context);
+        Navigator.pop(context); // Or navigate to dashboard
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Registration failed: ${response.body}')),

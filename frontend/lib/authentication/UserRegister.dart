@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserRegister extends StatefulWidget {
   UserRegister({Key? key}) : super(key: key);
@@ -37,6 +38,9 @@ class _UserRegisterState extends State<UserRegister> {
       );
 
       if (response.statusCode == 201 || response.statusCode == 200) {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('userEmail', _emailController.text.trim());
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Account created successfully!')),
         );

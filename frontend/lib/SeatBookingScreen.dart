@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
-import 'UserBookings.dart'; // ✅ Import the UserBooking screen
+import 'UserBookings.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SeatBookingScreen extends StatefulWidget {
   @override
@@ -24,7 +25,15 @@ class _SeatBookingScreenState extends State<SeatBookingScreen> {
   @override
   void initState() {
     super.initState();
+    loadUserEmail();
     fetchStoreyNames();
+  }
+
+  Future<void> loadUserEmail() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userEmail = prefs.getString('userEmail') ?? "guest@example.com";
+    });
   }
 
   Future<void> fetchStoreyNames() async {

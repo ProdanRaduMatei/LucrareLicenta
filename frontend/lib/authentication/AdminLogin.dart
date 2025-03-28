@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AdminLogin extends StatefulWidget {
   AdminLogin({Key? key}) : super(key: key);
@@ -50,6 +51,10 @@ class _AdminLoginState extends State<AdminLogin> {
 
       // ✅ Check for login success
       if (response.statusCode == 200) {
+        // ✅ Save admin email to SharedPreferences
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('adminEmail', _emailController.text.trim());
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Login successful!')),
         );
