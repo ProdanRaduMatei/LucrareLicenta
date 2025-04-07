@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/booking")
@@ -46,28 +47,6 @@ public class BookingController {
         return ResponseEntity.ok("Booking created successfully");
     }
 
-//    @PostMapping("/bookings")
-//    public ResponseEntity<int[]> getUserBookings(@RequestBody UserEmailDTO userEmailDTO) {
-//        // Ensure the request contains an email
-//        if (userEmailDTO == null || userEmailDTO.getUserEmail() == null || userEmailDTO.getUserEmail().isEmpty()) {
-//            return ResponseEntity.badRequest().build(); // Return 400 Bad Request
-//        }
-//
-//        // Find user by email
-//        User user = userService.findUserByEmail(userEmailDTO.getUserEmail());
-//        if (user == null) {
-//            return ResponseEntity.notFound().build(); // Return 404 Not Found
-//        }
-//
-//        // Get user bookings
-//        List<Booking> bookings = bookingService.getUserBookings(user.getId());
-//        int[] seats = new int[bookings.size()];
-//        for (Booking booking : bookings) {
-//            seats[bookings.indexOf(booking)] = booking.getSeat().getId().intValue();
-//        }
-//        return ResponseEntity.ok(seats);
-//    }
-
     @PostMapping("/bookings")
     public ResponseEntity<List<SeatBookingDTO>> getUserBookings(@RequestBody UserEmailDTO userEmailDTO) {
         if (userEmailDTO == null || userEmailDTO.getUserEmail() == null || userEmailDTO.getUserEmail().isEmpty()) {
@@ -81,9 +60,27 @@ public class BookingController {
 
         List<Booking> bookings = bookingService.getUserBookings(user.getId());
         List<SeatBookingDTO> seatBookingDTOs = bookings.stream()
-                .map(b -> new SeatBookingDTO(b.getSeat().getId().intValue(), b.getDate().toString()))
+                .map(b -> new SeatBookingDTO(
+                        b.getSeat().getId().intValue(),
+                        b.getDate().toString(),
+                        b.getId()))
                 .toList();
 
         return ResponseEntity.ok(seatBookingDTOs);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteBooking(@RequestBody Map<String, Long> request) {
+        Long bookingId = request.get("bookingId");
+        if (bookingId == null) {
+            return ResponseEntity.badRequest().body("Missing bookingId");
+        }
+
+        boolean deleted = bookingService.deleteBookingById(bookingId);
+        if (deleted) {
+            return ResponseEntity.ok("Booking deleted successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

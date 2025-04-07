@@ -181,7 +181,7 @@ class _UserRegisterState extends State<UserRegister> {
                 TextButton(
                   onPressed: () {
                     //go to login
-                    Navigator.pushNamed(context, '/userLogin');
+                    Navigator.pushReplacementNamed(context, '/userLogin');
                   },
                   child: Text(
                     "Already have an account? Sign in",

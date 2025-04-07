@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
-import 'package:intl/intl.dart'; // 📦 Added for date formatting
+import 'package:intl/intl.dart';
+import 'SeatBookingScreen.dart';
 
 class UserBookings extends StatefulWidget {
   @override
@@ -28,7 +29,6 @@ class _UserBookingsState extends State<UserBookings> {
       return;
     }
 
-    print("✅ Loaded user email from prefs: $email");
     await fetchBookings(email);
   }
 
@@ -45,16 +45,41 @@ class _UserBookingsState extends State<UserBookings> {
         setState(() {
           bookings = data.map<Map<String, dynamic>>((item) => {
             "seatId": item["seatId"],
-            "date": item["date"]
+            "date": item["date"],
+            "bookingId": item["bookingId"],
           }).toList();
           isLoading = false;
         });
       } else {
-        print("Failed to fetch bookings. Code: ${response.statusCode}");
         setState(() => isLoading = false);
       }
     } catch (e) {
       print("Error fetching bookings: $e");
+    }
+  }
+
+  Future<void> deleteBooking(int bookingId) async {
+    try {
+      final response = await http.delete(
+        Uri.parse("http://127.0.0.1:8080/booking/delete"),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({"bookingId": bookingId}),
+      );
+
+      if (response.statusCode == 200) {
+        setState(() {
+          bookings.removeWhere((b) => b["bookingId"] == bookingId);
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Booking deleted successfully')),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to delete booking')),
+        );
+      }
+    } catch (e) {
+      print("Error deleting booking: $e");
     }
   }
 
@@ -79,14 +104,66 @@ class _UserBookingsState extends State<UserBookings> {
         showDialog(
           context: context,
           builder: (_) => AlertDialog(
-            title: Text("Booking Details"),
+            title: Center(
+              child: Text(
+                "Booking Details",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("Seat ID: $seatId"),
-                Text("Row: ${lineCol[0]}"),
-                Text("Column: ${lineCol[1]}"),
-                Text("Storey: $storey"),
+                SizedBox(height: 8),
+                Text(
+                  "Seat ID: $seatId",
+                  style: TextStyle(fontSize: 16, letterSpacing: 1.0),
+                ),
+                SizedBox(height: 12),
+                Text.rich(
+                  TextSpan(
+                    text: "Row: ",
+                    style: TextStyle(fontSize: 16, letterSpacing: 1.0),
+                    children: [
+                      TextSpan(
+                        text: "${lineCol[0]}",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 12),
+                Text.rich(
+                  TextSpan(
+                    text: "Column: ",
+                    style: TextStyle(fontSize: 16, letterSpacing: 1.0),
+                    children: [
+                      TextSpan(
+                        text: "${lineCol[1]}",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 12),
+                Text.rich(
+                  TextSpan(
+                    text: "Storey: ",
+                    style: TextStyle(fontSize: 16, letterSpacing: 1.0),
+                    children: [
+                      TextSpan(
+                        text: "$storey",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  textAlign: TextAlign.center,
+                ),
               ],
             ),
             actions: [
@@ -97,8 +174,6 @@ class _UserBookingsState extends State<UserBookings> {
             ],
           ),
         );
-      } else {
-        print("Failed to get seat details.");
       }
     } catch (e) {
       print("Error fetching seat details: $e");
@@ -107,59 +182,108 @@ class _UserBookingsState extends State<UserBookings> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Your Bookings"),
-        backgroundColor: Color(0xFF4A477F),
-      ),
-      body: isLoading
-          ? Center(child: CircularProgressIndicator())
-          : bookings.isEmpty
-          ? Center(child: Text("No bookings found."))
-          : ListView.builder(
-        itemCount: bookings.length,
-        itemBuilder: (context, index) {
-          final booking = bookings[index];
-
-          // 🎯 Format the date to "dd MMM yyyy"
-          String formattedDate = "";
-          try {
-            formattedDate = DateFormat('dd MMM yyyy')
-                .format(DateTime.parse(booking['date']));
-          } catch (e) {
-            formattedDate = booking['date'];
-          }
-
-          return Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        backgroundColor: Color(0xFFB1B2B5),
+        appBar: AppBar(
+          title: Text(
+            "Your Bookings",
+            style: TextStyle(color: Colors.white),
+          ),
+          automaticallyImplyLeading: false,
+          backgroundColor: Color(0xFF4A477F),
+          iconTheme: IconThemeData(color: Colors.white),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 12.0), // 👈 adjust this value
+              child: IconButton(
+                icon: Icon(Icons.add),
+                tooltip: 'New Booking',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SeatBookingScreen()),
+                  );
+                },
+              ),
             ),
-            elevation: 4,
-            margin:
-            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: ListTile(
-              contentPadding: EdgeInsets.all(16),
-              title: Center(
-                child: Column(
+          ],
+        ),
+        body: isLoading
+            ? Center(child: CircularProgressIndicator())
+            : bookings.isEmpty
+            ? Center(child: Text("No bookings found."))
+            : ListView.builder(
+          itemCount: bookings.length,
+          itemBuilder: (context, index) {
+            final booking = bookings[index];
+            final formattedDate = DateFormat('dd MMM yyyy')
+                .format(DateTime.parse(booking["date"]));
+
+            return GestureDetector(
+              onTap: () => fetchDetailsForSeat(booking["seatId"]),
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                elevation: 4,
+                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Stack(
                   children: [
-                    Icon(Icons.event_seat,
-                        size: 30, color: Colors.deepPurple),
-                    SizedBox(height: 10),
-                    Text("Seat ID: ${booking['seatId']}",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold)),
-                    SizedBox(height: 8),
-                    Text("Booking Date: $formattedDate",
-                        style: TextStyle(fontSize: 16)),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 48),
+                      child: Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.event_seat, size: 30, color: Colors.deepPurple),
+                            SizedBox(height: 10),
+                            Text.rich(
+                              TextSpan(
+                                text: "Seat ID: ",
+                                style: TextStyle(fontSize: 16),
+                                children: [
+                                  TextSpan(
+                                    text: "${booking['seatId']}",
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(height: 8),
+                            Text.rich(
+                              TextSpan(
+                                text: "Booking Date: ",
+                                style: TextStyle(fontSize: 18),
+                                children: [
+                                  TextSpan(
+                                    text: formattedDate,
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 8,
+                      right: 8,
+                      child: IconButton(
+                        icon: Icon(Icons.delete, color: Colors.grey),
+                        onPressed: () => deleteBooking(booking["bookingId"]),
+                      ),
+                    ),
                   ],
                 ),
               ),
-              onTap: () =>
-                  fetchDetailsForSeat(booking['seatId']),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

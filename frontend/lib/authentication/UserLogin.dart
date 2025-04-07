@@ -57,7 +57,7 @@ class _UserLoginState extends State<UserLogin> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Login successful!')),
         );
-        Navigator.pushReplacementNamed(context, '/seatBookingScreen');
+        Navigator.pushReplacementNamed(context, '/userBookings');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Login failed: Invalid credentials')),

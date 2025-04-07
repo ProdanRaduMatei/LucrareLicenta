@@ -54,4 +54,12 @@ public class BookingService {
     public List<Booking> getUserBookings(Long userId) {
         return bookingRepository.findByUserId(userId);
     }
+
+    public boolean deleteBookingById(Long bookingId) {
+        if (bookingRepository.existsById(bookingId)) {
+            bookingRepository.deleteById(bookingId);
+            return true;
+        }
+        return false;
+    }
 }

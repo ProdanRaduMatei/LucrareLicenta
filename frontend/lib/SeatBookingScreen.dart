@@ -146,7 +146,7 @@ class _SeatBookingScreenState extends State<SeatBookingScreen> {
         fetchSeatLayout();
 
         // ✅ Navigate to UserBooking screen after successful booking
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => UserBookings()),
         );
@@ -160,110 +160,114 @@ class _SeatBookingScreenState extends State<SeatBookingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          "SEAT SURFER",
-          style: TextStyle(
+    return WillPopScope(
+      onWillPop: () async => false, // Disables Android back button
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          automaticallyImplyLeading: false, // Removes back arrow
+          title: Text(
+            "SEAT SURFER",
+            style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
             color: Color(0xFF4A477F),
+            ),
           ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Storey Name", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                      storeyNames.isEmpty
-                          ? CircularProgressIndicator()
-                          : DropdownButton<String>(
-                        value: selectedStorey,
-                        items: storeyNames.map((storey) {
-                          return DropdownMenuItem<String>(
-                            value: storey,
-                            child: Text(storey),
-                          );
-                        }).toList(),
-                        onChanged: (value) {
-                          setState(() {
-                            selectedStorey = value!;
-                            fetchSeatLayout();
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Date", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                      ElevatedButton(
-                        onPressed: () => selectDate(context),
-                        child: Text(selectedDate),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(seatLayout.length, (row) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(seatLayout[row].length, (col) {
-                      return Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: seatLayout[row][col] == 0
-                            ? SizedBox(width: 20, height: 20)
-                            : GestureDetector(
-                          onTap: seatLayout[row][col] == 1 ? () => toggleSeatSelection(row, col) : null,
-                          child: Container(
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: seatLayout[row][col] == 2
-                                  ? Colors.red
-                                  : selectedSeats.contains("$row-$col")
-                                  ? Colors.white
-                                  : Colors.grey,
-                              border: Border.all(color: Colors.black),
-                            ),
-                          ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Storey Name", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                        storeyNames.isEmpty
+                            ? CircularProgressIndicator()
+                            : DropdownButton<String>(
+                          value: selectedStorey,
+                          items: storeyNames.map((storey) {
+                            return DropdownMenuItem<String>(
+                              value: storey,
+                              child: Text(storey),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            setState(() {
+                              selectedStorey = value!;
+                              fetchSeatLayout();
+                            });
+                          },
                         ),
-                      );
-                    }),
-                  );
-                }),
-              ),
-            ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              child: ElevatedButton(
-                onPressed: bookSeats,
-                child: Text("Confirm Booking"),
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 14),
-                  textStyle: TextStyle(fontSize: 18),
-                  minimumSize: Size(double.infinity, 50),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Date", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                        ElevatedButton(
+                          onPressed: () => selectDate(context),
+                          child: Text(selectedDate),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(seatLayout.length, (row) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(seatLayout[row].length, (col) {
+                        return Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: seatLayout[row][col] == 0
+                              ? SizedBox(width: 20, height: 20)
+                              : GestureDetector(
+                            onTap: seatLayout[row][col] == 1 ? () => toggleSeatSelection(row, col) : null,
+                            child: Container(
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: seatLayout[row][col] == 2
+                                    ? Colors.red
+                                    : selectedSeats.contains("$row-$col")
+                                    ? Colors.white
+                                    : Colors.grey,
+                                border: Border.all(color: Colors.black),
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                    );
+                  }),
+                ),
+              ),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                child: ElevatedButton(
+                  onPressed: bookSeats,
+                  child: Text("Confirm Booking"),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(vertical: 14),
+                    textStyle: TextStyle(fontSize: 18),
+                    minimumSize: Size(double.infinity, 50),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
