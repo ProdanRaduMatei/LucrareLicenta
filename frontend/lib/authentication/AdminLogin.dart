@@ -51,7 +51,6 @@ class _AdminLoginState extends State<AdminLogin> {
 
       // ✅ Check for login success
       if (response.statusCode == 200) {
-        // ✅ Save admin email to SharedPreferences
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('adminEmail', _emailController.text.trim());
 

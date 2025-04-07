@@ -38,7 +38,7 @@ class _UserRegisterState extends State<UserRegister> {
       );
 
       if (response.statusCode == 201 || response.statusCode == 200) {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
+        final prefs = await SharedPreferences.getInstance();
         await prefs.setString('userEmail', _emailController.text.trim());
 
         ScaffoldMessenger.of(context).showSnackBar(

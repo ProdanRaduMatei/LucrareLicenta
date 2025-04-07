@@ -38,14 +38,13 @@ class _AdminRegisterState extends State<AdminRegister> {
       );
 
       if (response.statusCode == 201 || response.statusCode == 200) {
-        // ✅ Save registered admin email
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('adminEmail', _emailController.text.trim());
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Account created successfully!')),
         );
-        Navigator.pop(context); // Or navigate to dashboard
+        Navigator.pop(context);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Registration failed: ${response.body}')),
