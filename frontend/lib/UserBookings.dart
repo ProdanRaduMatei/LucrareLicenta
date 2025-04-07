@@ -48,6 +48,11 @@ class _UserBookingsState extends State<UserBookings> {
             "date": item["date"],
             "bookingId": item["bookingId"],
           }).toList();
+
+          // Sort by date ascending
+          bookings.sort((a, b) => DateTime.parse(a["date"])
+              .compareTo(DateTime.parse(b["date"])));
+
           isLoading = false;
         });
       } else {
@@ -107,59 +112,52 @@ class _UserBookingsState extends State<UserBookings> {
             title: Center(
               child: Text(
                 "Booking Details",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 8),
+                SizedBox(height: 12),
                 Text(
                   "Seat ID: $seatId",
                   style: TextStyle(fontSize: 16, letterSpacing: 1.0),
                 ),
-                SizedBox(height: 12),
+                SizedBox(height: 16),
                 Text.rich(
                   TextSpan(
                     text: "Row: ",
                     style: TextStyle(fontSize: 16, letterSpacing: 1.0),
                     children: [
                       TextSpan(
-                        text: "${lineCol[0]}",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
+                          text: "${lineCol[0]}",
+                          style: TextStyle(fontWeight: FontWeight.bold)),
                     ],
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 12),
+                SizedBox(height: 16),
                 Text.rich(
                   TextSpan(
                     text: "Column: ",
                     style: TextStyle(fontSize: 16, letterSpacing: 1.0),
                     children: [
                       TextSpan(
-                        text: "${lineCol[1]}",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
+                          text: "${lineCol[1]}",
+                          style: TextStyle(fontWeight: FontWeight.bold)),
                     ],
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 12),
+                SizedBox(height: 16),
                 Text.rich(
                   TextSpan(
                     text: "Storey: ",
                     style: TextStyle(fontSize: 16, letterSpacing: 1.0),
                     children: [
                       TextSpan(
-                        text: "$storey",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
+                          text: "$storey",
+                          style: TextStyle(fontWeight: FontWeight.bold)),
                     ],
                   ),
                   textAlign: TextAlign.center,
@@ -180,8 +178,92 @@ class _UserBookingsState extends State<UserBookings> {
     }
   }
 
+  Widget buildBookingCard(Map<String, dynamic> booking, {bool showDelete = true}) {
+    final formattedDate =
+    DateFormat('dd MMM yyyy').format(DateTime.parse(booking["date"]));
+
+    return GestureDetector(
+      onTap: () => fetchDetailsForSeat(booking["seatId"]),
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        elevation: 4,
+        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 48),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.event_seat, size: 30, color: Colors.deepPurple),
+                    SizedBox(height: 10),
+                    Text.rich(
+                      TextSpan(
+                        text: "Seat ID: ",
+                        style: TextStyle(fontSize: 16),
+                        children: [
+                          TextSpan(
+                            text: "${booking['seatId']}",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 8),
+                    Text.rich(
+                      TextSpan(
+                        text: "Booking Date: ",
+                        style: TextStyle(fontSize: 18),
+                        children: [
+                          TextSpan(
+                            text: formattedDate,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            if (showDelete)
+              Positioned(
+                bottom: 8,
+                right: 8,
+                child: IconButton(
+                  icon: Icon(Icons.delete, color: Colors.grey),
+                  onPressed: () => deleteBooking(booking["bookingId"]),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final today = DateTime.now();
+    final todayDateOnly = DateTime(today.year, today.month, today.day);
+
+    final upcoming = bookings.where((b) {
+      final bookingDate = DateTime.parse(b['date']);
+      final bookingDateOnly =
+      DateTime(bookingDate.year, bookingDate.month, bookingDate.day);
+      return bookingDateOnly.isAtSameMomentAs(todayDateOnly) ||
+          bookingDateOnly.isAfter(todayDateOnly);
+    }).toList();
+
+    final past = bookings.where((b) {
+      final bookingDate = DateTime.parse(b['date']);
+      final bookingDateOnly =
+      DateTime(bookingDate.year, bookingDate.month, bookingDate.day);
+      return bookingDateOnly.isBefore(todayDateOnly);
+    }).toList();
+
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
@@ -196,7 +278,7 @@ class _UserBookingsState extends State<UserBookings> {
           iconTheme: IconThemeData(color: Colors.white),
           actions: [
             Padding(
-              padding: const EdgeInsets.only(right: 12.0), // 👈 adjust this value
+              padding: const EdgeInsets.only(right: 12.0),
               child: IconButton(
                 icon: Icon(Icons.add),
                 tooltip: 'New Booking',
@@ -214,75 +296,32 @@ class _UserBookingsState extends State<UserBookings> {
             ? Center(child: CircularProgressIndicator())
             : bookings.isEmpty
             ? Center(child: Text("No bookings found."))
-            : ListView.builder(
-          itemCount: bookings.length,
-          itemBuilder: (context, index) {
-            final booking = bookings[index];
-            final formattedDate = DateFormat('dd MMM yyyy')
-                .format(DateTime.parse(booking["date"]));
-
-            return GestureDetector(
-              onTap: () => fetchDetailsForSeat(booking["seatId"]),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                elevation: 4,
-                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 48),
-                      child: Center(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.event_seat, size: 30, color: Colors.deepPurple),
-                            SizedBox(height: 10),
-                            Text.rich(
-                              TextSpan(
-                                text: "Seat ID: ",
-                                style: TextStyle(fontSize: 16),
-                                children: [
-                                  TextSpan(
-                                    text: "${booking['seatId']}",
-                                    style: TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(height: 8),
-                            Text.rich(
-                              TextSpan(
-                                text: "Booking Date: ",
-                                style: TextStyle(fontSize: 18),
-                                children: [
-                                  TextSpan(
-                                    text: formattedDate,
-                                    style: TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 8,
-                      right: 8,
-                      child: IconButton(
-                        icon: Icon(Icons.delete, color: Colors.grey),
-                        onPressed: () => deleteBooking(booking["bookingId"]),
-                      ),
-                    ),
-                  ],
+            : ListView(
+          children: [
+            if (upcoming.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 24, 16, 8), // extra top space
+                child: Center(
+                  child: Text(
+                    "Upcoming Bookings",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
-            );
-          },
+            ...upcoming.map((b) => buildBookingCard(b, showDelete: true)),
+
+            if (past.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 24, 16, 8), // extra top space
+                child: Center(
+                  child: Text(
+                    "Past Bookings",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ...past.map((b) => buildBookingCard(b, showDelete: false)),
+          ],
         ),
       ),
     );
