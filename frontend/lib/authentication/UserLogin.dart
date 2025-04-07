@@ -51,13 +51,12 @@ class _UserLoginState extends State<UserLogin> {
 
       // ✅ Check for login success
       if (response.statusCode == 200) {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('userEmail', _emailController.text.trim()); // ✅ Save email
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Login successful!')),
         );
-
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setString('userEmail', _emailController.text.trim());
-
         Navigator.pushReplacementNamed(context, '/seatBookingScreen');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(

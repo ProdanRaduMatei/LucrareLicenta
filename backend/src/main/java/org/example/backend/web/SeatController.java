@@ -60,4 +60,6 @@ public class SeatController {
         lineCol[1] = seat.getCol();
         return ResponseEntity.ok(lineCol);
     }
+
+
 }

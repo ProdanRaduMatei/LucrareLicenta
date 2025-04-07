@@ -46,25 +46,44 @@ public class BookingController {
         return ResponseEntity.ok("Booking created successfully");
     }
 
-    @GetMapping("/bookings")
-    public ResponseEntity<int[]> getUserBookings(@RequestBody UserEmailDTO userEmailDTO) {
-        // Ensure the request contains an email
+//    @PostMapping("/bookings")
+//    public ResponseEntity<int[]> getUserBookings(@RequestBody UserEmailDTO userEmailDTO) {
+//        // Ensure the request contains an email
+//        if (userEmailDTO == null || userEmailDTO.getUserEmail() == null || userEmailDTO.getUserEmail().isEmpty()) {
+//            return ResponseEntity.badRequest().build(); // Return 400 Bad Request
+//        }
+//
+//        // Find user by email
+//        User user = userService.findUserByEmail(userEmailDTO.getUserEmail());
+//        if (user == null) {
+//            return ResponseEntity.notFound().build(); // Return 404 Not Found
+//        }
+//
+//        // Get user bookings
+//        List<Booking> bookings = bookingService.getUserBookings(user.getId());
+//        int[] seats = new int[bookings.size()];
+//        for (Booking booking : bookings) {
+//            seats[bookings.indexOf(booking)] = booking.getSeat().getId().intValue();
+//        }
+//        return ResponseEntity.ok(seats);
+//    }
+
+    @PostMapping("/bookings")
+    public ResponseEntity<List<SeatBookingDTO>> getUserBookings(@RequestBody UserEmailDTO userEmailDTO) {
         if (userEmailDTO == null || userEmailDTO.getUserEmail() == null || userEmailDTO.getUserEmail().isEmpty()) {
-            return ResponseEntity.badRequest().build(); // Return 400 Bad Request
+            return ResponseEntity.badRequest().build();
         }
 
-        // Find user by email
         User user = userService.findUserByEmail(userEmailDTO.getUserEmail());
         if (user == null) {
-            return ResponseEntity.notFound().build(); // Return 404 Not Found
+            return ResponseEntity.notFound().build();
         }
 
-        // Get user bookings
         List<Booking> bookings = bookingService.getUserBookings(user.getId());
-        int[] seats = new int[bookings.size()];
-        for (Booking booking : bookings) {
-            seats[bookings.indexOf(booking)] = booking.getSeat().getId().intValue();
-        }
-        return ResponseEntity.ok(seats);
+        List<SeatBookingDTO> seatBookingDTOs = bookings.stream()
+                .map(b -> new SeatBookingDTO(b.getSeat().getId().intValue(), b.getDate().toString()))
+                .toList();
+
+        return ResponseEntity.ok(seatBookingDTOs);
     }
 }
