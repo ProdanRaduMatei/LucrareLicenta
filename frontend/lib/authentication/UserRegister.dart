@@ -44,7 +44,7 @@ class _UserRegisterState extends State<UserRegister> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Account created successfully!')),
         );
-        Navigator.pop(context);
+        Navigator.pushReplacementNamed(context, '/seatBookingScreen');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Registration failed: ${response.body}')),
