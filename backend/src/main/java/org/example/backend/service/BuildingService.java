@@ -37,4 +37,8 @@ public class BuildingService {
     public void deleteBuilding(Long id) {
         buildingRepository.deleteById(id);
     }
+
+    public List<Building> findAll() {
+        return buildingRepository.findAll();
+    }
 }

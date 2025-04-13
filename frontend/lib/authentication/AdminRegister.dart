@@ -44,7 +44,7 @@ class _AdminRegisterState extends State<AdminRegister> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Account created successfully!')),
         );
-        Navigator.pop(context);
+        Navigator.pushReplacementNamed(context, '/addSeatLayout');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Registration failed: ${response.body}')),

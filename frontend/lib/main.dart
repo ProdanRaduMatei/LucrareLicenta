@@ -7,6 +7,7 @@ import 'authentication/UserRegister.dart';
 import 'authentication/UserLogin.dart';
 import 'UserBookings.dart';
 import 'Dashboard.dart';
+import 'AddSeatLayout.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         "/dashboard": (context) => Dashboard(),
         "/seatBookingScreen": (context) => SeatBookingScreen(),
         "/userBookings": (context) => UserBookings(),
+        "/addSeatLayout": (context) => AddSeatLayout(),
       },
     );
   }
