@@ -1,11 +1,15 @@
 package org.example.backend.service;
 
 import org.example.backend.domain.Building;
+import org.example.backend.domain.Storey;
 import org.example.backend.persistence.BuildingRepository;
+import org.example.backend.web.BuildingStoreyDTO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class BuildingService {
@@ -40,5 +44,18 @@ public class BuildingService {
 
     public List<Building> findAll() {
         return buildingRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public List<BuildingStoreyDTO> getBuildingsWithStoreys() {
+        return buildingRepository.findAll().stream()
+                .map(b -> new BuildingStoreyDTO(
+                        b.getId(),
+                        b.getName(),
+                        b.getStoreys().stream()
+                                .map(Storey::getName)
+                                .collect(Collectors.toList())
+                ))
+                .collect(Collectors.toList());
     }
 }

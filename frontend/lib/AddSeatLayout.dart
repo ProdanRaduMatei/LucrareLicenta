@@ -95,9 +95,12 @@ class _AddSeatLayoutState extends State<AddSeatLayout> {
         data: data,
         options: Options(headers: {'Content-Type': 'application/json'}),
       );
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Storey layout created successfully')),
-      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Storey layout created successfully')),
+        );
+        Navigator.pushReplacementNamed(context, '/adminBuildings');
+      }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Failed to create layout: $e')),

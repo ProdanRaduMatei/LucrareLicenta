@@ -23,4 +23,9 @@ public class BuildingController {
                 .map(b -> new BuildingDTO(b.getId(), b.getName()))
                 .collect(Collectors.toList());
     }
+
+    @GetMapping("/storeys")
+    public List<BuildingStoreyDTO> getAllBuildingsWithStoreys() {
+        return buildingService.getBuildingsWithStoreys();
+    }
 }
