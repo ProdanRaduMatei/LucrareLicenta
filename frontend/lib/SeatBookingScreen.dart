@@ -91,6 +91,26 @@ class _SeatBookingScreenState extends State<SeatBookingScreen> {
     setState(() {});
   }
 
+  int getTotalSeats() {
+    int total = 0;
+    for (var row in seatLayout) {
+      for (var seat in row) {
+        if (seat != 0) total++;
+      }
+    }
+    return total;
+  }
+
+  int getOccupiedSeats() {
+    int occupied = 0;
+    for (var row in seatLayout) {
+      for (var seat in row) {
+        if (seat == 2) occupied++;
+      }
+    }
+    return occupied;
+  }
+
   Future<void> selectDate(BuildContext context) async {
     DateTime today = DateTime.now();
     DateTime lastDay = today.add(Duration(days: 7));
@@ -138,14 +158,8 @@ class _SeatBookingScreenState extends State<SeatBookingScreen> {
         body: json.encode(bookingData),
       );
 
-      print("Booking Response Code: ${response.statusCode}");
-      print("Booking Response Body: ${response.body}");
-
       if (response.statusCode == 200 || response.statusCode == 201) {
-        print("Booking successful");
         fetchSeatLayout();
-
-        // ✅ Navigate to UserBooking screen after successful booking
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => UserBookings()),
@@ -161,17 +175,17 @@ class _SeatBookingScreenState extends State<SeatBookingScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false, // Disables Android back button
+      onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          automaticallyImplyLeading: false, // Removes back arrow
+          automaticallyImplyLeading: false,
           title: Text(
             "SEAT SURFER",
             style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFF4A477F),
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF4A477F),
             ),
           ),
         ),
@@ -219,6 +233,14 @@ class _SeatBookingScreenState extends State<SeatBookingScreen> {
                   ],
                 ),
               ),
+              if (seatLayout.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    "Occupied: ${getOccupiedSeats()} / ${getTotalSeats()}",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Column(
