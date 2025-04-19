@@ -1,17 +1,22 @@
 package org.example.backend.service;
 
+import jakarta.transaction.Transactional;
 import org.example.backend.domain.Building;
 import org.example.backend.domain.Seat;
 import org.example.backend.domain.Storey;
+import org.example.backend.persistence.BookingRepository;
 import org.example.backend.persistence.BuildingRepository;
 import org.example.backend.persistence.SeatRepository;
 import org.example.backend.persistence.StoreyRepository;
 import org.example.backend.web.SeatDTO;
 import org.example.backend.web.StoreyLayoutDTO;
+import org.example.backend.web.StoreyStatsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +29,9 @@ public class StoreyService {
 
     @Autowired
     private SeatRepository seatRepository;
+
+    @Autowired
+    private BookingRepository bookingRepository;
 
     public StoreyService(StoreyRepository storeyRepository) {
         this.storeyRepository = storeyRepository;
@@ -83,5 +91,23 @@ public class StoreyService {
             seat.setStorey(storey);
             seatRepository.save(seat);
         }
+    }
+
+    @Transactional
+    public StoreyStatsDTO getStoreyStats(String storeyName, LocalDate date) {
+        Optional<Storey> optionalStorey = storeyRepository.findByName(storeyName);
+        if (optionalStorey.isEmpty()) {
+            throw new RuntimeException("Storey not found");
+        }
+
+        Storey storey = optionalStorey.get();
+
+        // ✅ Asta funcționează acum deoarece suntem într-o tranzacție activă
+        int totalSeats = storey.getSeats().size();
+
+        Instant instantDate = date.atStartOfDay(ZoneId.of("UTC")).toInstant();
+        int bookedSeats = bookingRepository.countBySeat_Storey_NameAndDate(storeyName, instantDate);
+
+        return new StoreyStatsDTO(totalSeats, bookedSeats);
     }
 }
