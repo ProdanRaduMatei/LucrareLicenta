@@ -1,0 +1,19 @@
+\begin{thebibliography}{1}
+
+\bibitem{postgresql}
+PostgreSQL Global~Development Group.
+\newblock {\em PostgreSQL Documentation}, 2024.
+
+\bibitem{firebase}
+Google Inc.
+\newblock {\em Firebase Documentation}, 2024.
+
+\bibitem{flutter}
+Google Inc.
+\newblock {\em Flutter Documentation}, 2024.
+
+\bibitem{springboot}
+Pivotal Software.
+\newblock {\em Spring Boot Reference Guide}, 2024.
+
+\end{thebibliography}
