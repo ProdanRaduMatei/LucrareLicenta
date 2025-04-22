@@ -9,6 +9,7 @@ import 'UserBookings.dart';
 import 'Dashboard.dart';
 import 'AddSeatLayout.dart';
 import 'AdminBuildingsView.dart';
+import 'AdminOccupancyReport.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         "/userBookings": (context) => UserBookings(),
         "/addSeatLayout": (context) => AddSeatLayout(),
         "/adminBuildings": (context) => AdminBuildingsView(),
+        "/adminOccupancyReport": (context) => AdminOccupancyReport(storeyName: ""),
       },
     );
   }

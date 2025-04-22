@@ -1,6 +1,8 @@
 package org.example.backend.service;
 
 import jakarta.transaction.Transactional;
+import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
+import org.example.backend.domain.Booking;
 import org.example.backend.domain.Building;
 import org.example.backend.domain.Seat;
 import org.example.backend.domain.Storey;
@@ -8,15 +10,19 @@ import org.example.backend.persistence.BookingRepository;
 import org.example.backend.persistence.BuildingRepository;
 import org.example.backend.persistence.SeatRepository;
 import org.example.backend.persistence.StoreyRepository;
+import org.example.backend.web.OccupancyReportResponse;
 import org.example.backend.web.SeatDTO;
 import org.example.backend.web.StoreyLayoutDTO;
 import org.example.backend.web.StoreyStatsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.Document;
+import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -109,5 +115,30 @@ public class StoreyService {
         int bookedSeats = bookingRepository.countBySeat_Storey_NameAndDate(storeyName, instantDate);
 
         return new StoreyStatsDTO(totalSeats, bookedSeats);
+    }
+
+    @Transactional
+    public OccupancyReportResponse getOccupancyReport(String storeyName, LocalDate start, LocalDate end) {
+        Storey storey = storeyRepository.findByName(storeyName)
+                .orElseThrow(() -> new RuntimeException("Storey not found"));
+
+        List<Seat> seats = storey.getSeats();
+        int total = seats.size();
+
+        int booked = 0;
+        for (Seat seat : seats) {
+            for (Booking booking : seat.getBookings()) {
+                LocalDate date = booking.getDate().atZone(ZoneId.systemDefault()).toLocalDate();
+                if (!date.isBefore(start) && !date.isAfter(end)) {
+                    booked++;
+                    break;
+                }
+            }
+        }
+
+        int unbooked = total - booked;
+        double percent = total == 0 ? 0 : (booked * 100.0) / total;
+
+        return new OccupancyReportResponse(total, booked, unbooked, percent);
     }
 }

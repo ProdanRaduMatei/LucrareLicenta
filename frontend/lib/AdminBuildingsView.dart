@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
+import 'AdminOccupancyReport.dart';
+
 class BuildingStorey {
   final String buildingName;
   final List<String> storeys;
@@ -145,7 +147,18 @@ class _AdminBuildingsViewState extends State<AdminBuildingsView> {
         children: building.storeys.map((storey) {
           return ListTile(
             title: Text("• $storey"),
-            onTap: () => showStatsForStorey(storey),
+            trailing: IconButton(
+              icon: Icon(Icons.insert_chart, color: Colors.deepPurple),
+              tooltip: "View Occupancy",
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => AdminOccupancyReport(storeyName: storey),
+                  ),
+                );
+              },
+            ),
           );
         }).toList(),
       ),

@@ -6,9 +6,12 @@ import org.example.backend.persistence.BookingRepository;
 import org.example.backend.service.SeatService;
 import org.example.backend.service.StoreyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -55,5 +58,11 @@ public class StoreyController {
         LocalDate date = LocalDate.parse(request.getDate()); // Format: yyyy-MM-dd
         StoreyStatsDTO stats = storeyService.getStoreyStats(request.getStoreyName(), date);
         return ResponseEntity.ok(stats);
+    }
+
+    @PostMapping("/occupancy")
+    public ResponseEntity<OccupancyReportResponse> getOccupancyReport(@RequestBody OccupancyReportRequest request) {
+        OccupancyReportResponse response = storeyService.getOccupancyReport(request.getStoreyName(), request.getStartDate(), request.getEndDate());
+        return ResponseEntity.ok(response);
     }
 }
