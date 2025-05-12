@@ -21,6 +21,7 @@ class _SeatBookingScreenState extends State<SeatBookingScreen> {
   String selectedDate = DateFormat("yyyy-MM-dd'T'00:00:00'Z'").format(DateTime.now());
   Set<String> selectedSeats = {};
   String userEmail = "user@example.com";
+  List<String> suggestedSeats = [];
 
   @override
   void initState() {
@@ -172,6 +173,38 @@ class _SeatBookingScreenState extends State<SeatBookingScreen> {
     }
   }
 
+  Future<void> fetchSeatSuggestions() async {
+    final payload = {
+      "userEmail": userEmail,
+      "storeyName": selectedStorey,
+      "date": selectedDate
+    };
+
+    try {
+      final response = await http.post(
+        Uri.parse("http://127.0.0.1:8080/ai/suggest-seats"),
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode(payload),
+      );
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        final List suggestions = data['suggestions'];
+        setState(() {
+          // Only take top 3 suggestions, store with rank
+          suggestedSeats = suggestions.take(3).map<String>((s) => "${s['row']}-${s['col']}").toList();
+        });
+        if (suggestedSeats.isEmpty) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("No suggestions available.")));
+        }
+      } else {
+        print("Suggestion fetch failed: ${response.statusCode}");
+      }
+    } catch (e) {
+      print("Error fetching suggestions: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -254,21 +287,38 @@ class _SeatBookingScreenState extends State<SeatBookingScreen> {
                           child: seatLayout[row][col] == 0
                               ? SizedBox(width: 20, height: 20)
                               : GestureDetector(
-                            onTap: seatLayout[row][col] == 1 ? () => toggleSeatSelection(row, col) : null,
-                            child: Container(
-                              width: 20,
-                              height: 20,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: seatLayout[row][col] == 2
-                                    ? Colors.red
-                                    : selectedSeats.contains("$row-$col")
-                                    ? Colors.white
-                                    : Colors.grey,
-                                border: Border.all(color: Colors.black),
-                              ),
-                            ),
-                          ),
+                                  onTap: seatLayout[row][col] == 1 ? () => toggleSeatSelection(row, col) : null,
+                                  child: Container(
+                                    width: 20,
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      // Gradient coloring for top 3 suggestions
+                                      color: (() {
+                                        Color seatColor;
+                                        String key = "$row-$col";
+                                        if (seatLayout[row][col] == 2) {
+                                          seatColor = Colors.red;
+                                        } else if (selectedSeats.contains(key)) {
+                                          seatColor = Colors.white;
+                                        } else if (suggestedSeats.contains(key)) {
+                                          int index = suggestedSeats.indexOf(key);
+                                          if (index == 0) {
+                                            seatColor = Color(0xFF6555B9); // New lighter purple for best
+                                          } else if (index == 1) {
+                                            seatColor = Color(0xFF8E79D1); // New medium-light purple
+                                          } else {
+                                            seatColor = Color(0xFFB8A6E5); // New lightest purple
+                                          }
+                                        } else {
+                                          seatColor = Colors.grey;
+                                        }
+                                        return seatColor;
+                                      })(),
+                                      border: Border.all(color: Colors.black),
+                                    ),
+                                  ),
+                                ),
                         );
                       }),
                     );
@@ -288,6 +338,30 @@ class _SeatBookingScreenState extends State<SeatBookingScreen> {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                child: ElevatedButton(
+                  onPressed: fetchSeatSuggestions,
+                  child: Text(
+                    "Suggest a Seat",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(vertical: 14),
+                    textStyle: TextStyle(fontSize: 18),
+                    minimumSize: Size(double.infinity, 50),
+                    backgroundColor: Colors.deepPurple,
+                  ).copyWith(
+                    overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.pressed)) return Color(0xFFD1C6F4);
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 40),
             ],
           ),
         ),

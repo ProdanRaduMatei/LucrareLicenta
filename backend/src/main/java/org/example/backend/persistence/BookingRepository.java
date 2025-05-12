@@ -15,4 +15,6 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 
     List<Booking> findByUserId(Long userId);
     int countBySeat_Storey_NameAndDate(String storeyName, Instant date);
+
+    List<Booking> findBySeat_Storey_NameAndDate(String storeyName, Instant date);
 }
