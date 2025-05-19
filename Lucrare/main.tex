@@ -1,4 +1,5 @@
-\documentclass[12pt,a4paper]{report}
+\documentclass[12pt,a4paper]{report} % ✅ Good
+%\documentclass[12pt,a4paper,draft]{report} % 🚫 Will skip images
 
 % ===== PACKAGES =====
 \usepackage[utf8]{inputenc}
@@ -772,21 +773,102 @@ Security-related tests focused on validating role-based restrictions and session
 
 This multi-layered testing approach ensured that SeatSurfer was functionally correct, secure against unauthorized access, and robust across platforms.
 
-\section{Screenshot Examples}
+\section{User and Administrator Manual}
 
-% \begin{figure}[H]
-%     \centering
-%     % \includegraphics[width=0.75\textwidth]{images/booking_screen.png}
-%     \caption{Seat Booking Screen (Date + Layout + Booking Button)}
-%     \label{fig:booking_screen}
-% \end{figure}
+This section serves as a practical guide for navigating the SeatSurfer application. It covers all core workflows for both regular users and administrators, providing detailed instructions and interface walkthroughs. SeatSurfer was designed with usability in mind, offering an intuitive interface and streamlined seat management process.
 
-% \begin{figure}[H]
-%     \centering
-%     % \includegraphics[width=0.75\textwidth]{images/admin_dashboard.png}
-%     \caption{Admin Dashboard with Report Generation}
-%     \label{fig:admin_dashboard}
-% \end{figure}
+\subsection{User Functionality}
+
+\subsubsection*{1. Sign-Up and Login}
+
+Users can register by providing an email address and a password. After successful registration, they can log in and begin booking.
+
+\begin{center}
+\includegraphics[width=0.35\textwidth]{images/login_screen.png}
+\captionof{figure}{User Registration Screen}
+\end{center}
+
+\subsubsection*{2. Visual Seat Selection and Booking}
+
+Once logged in, the user is presented with a grid-based seat layout for a selected storey and date. Seats are color-coded:
+
+\begin{itemize}
+\item \textcolor{red}{Red} — booked
+\item \textcolor{gray}{Gray} — unavailable
+\item \textcolor{green}{Green} — available
+\item \textcolor{purple}{Purple} — suggested by AI
+\end{itemize}
+
+\begin{center}
+\includegraphics[width=0.35\textwidth]{images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 19.56.13.png}
+\captionof{figure}{Seat Selection and Layout}
+\end{center}
+
+\subsubsection*{3. View and Manage Bookings}
+
+Users can access the “Your Bookings” screen to view upcoming and past reservations. Each booking displays the seat ID, date, and a trash icon for deletion.
+
+\begin{center}
+\includegraphics[width=0.35\textwidth]{images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 20.04.04.png}
+\captionof{figure}{Upcoming Bookings List}
+\end{center}
+
+Tapping a booking shows seat details such as row, column, and storey:
+
+\begin{center}
+\includegraphics[width=0.35\textwidth]{images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 20.04.14.png}
+\captionof{figure}{Booking Details Modal}
+\end{center}
+
+Bookings can also be deleted. After deletion, a confirmation message is displayed.
+
+\begin{center}
+\includegraphics[width=0.35\textwidth]{images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 20.04.30.png}
+\captionof{figure}{Deleted Booking Confirmation}
+\end{center}
+
+\subsection{Admin Functionality}
+
+\subsubsection*{1. Storey and Building Management}
+
+Admins can manage multiple buildings, each with several storeys. They can view associated storeys and access occupancy statistics for each.
+
+\begin{center}
+\includegraphics[width=0.35\textwidth]{images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 20.06.31.png}
+\captionof{figure}{Buildings and Storeys Management}
+\end{center}
+
+\subsubsection*{2. Occupancy Analytics}
+
+Admins can select a date range and storey to generate occupancy data including total seats, booked/unbooked counts, and occupancy percentage.
+
+\begin{center}
+\includegraphics[width=0.35\textwidth]{images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 20.07.03.png}
+\captionof{figure}{Occupancy Analytics Dashboard}
+\end{center}
+
+\subsubsection*{3. Seat Layout Configuration}
+
+Admins can design seat layouts by selecting the storey and building, then activating or deactivating seat positions in a grid-based interface.
+
+\begin{center}
+\includegraphics[width=0.35\textwidth]{images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 20.08.52.png}
+\captionof{figure}{Interactive Seat Layout Designer}
+\end{center}
+
+\subsection{Error Handling and Notifications}
+
+Throughout the application, feedback is provided for all actions:
+\begin{itemize}
+    \item Booking conflict errors (e.g., seat already reserved)
+    \item Unauthorized access redirections
+    \item Confirmation dialogs for all destructive actions (e.g., canceling)
+    \item Visual loading indicators during API operations
+\end{itemize}
+
+\subsection{Summary}
+
+The SeatSurfer application is designed to be intuitive and efficient for both individual employees and system administrators. With visual cues, a clean layout, and contextual smart features, the system ensures a smooth and productive experience across devices.
 
 \section{Test Results and Known Limitations}
 

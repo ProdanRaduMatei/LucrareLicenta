@@ -28,53 +28,57 @@
 \contentsline {section}{\numberline {5.3}Features for Administrators}{27}{section.5.3}%
 \contentsline {section}{\numberline {5.4}Design Philosophy and UI Decisions}{27}{section.5.4}%
 \contentsline {section}{\numberline {5.5}Testing Strategy}{28}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Screenshot Examples}{29}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Test Results and Known Limitations}{29}{section.5.7}%
-\contentsline {section}{\numberline {5.8}Summary}{30}{section.5.8}%
-\contentsline {chapter}{\numberline {6}Database Design and Optimization}{31}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Relational Schema Design}{31}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Normalization and Design Rationale}{32}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Query Examples}{32}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Indexes and Performance}{33}{section.6.4}%
-\contentsline {section}{\numberline {6.5}Scalability Considerations}{34}{section.6.5}%
-\contentsline {section}{\numberline {6.6}Summary}{34}{section.6.6}%
-\contentsline {chapter}{\numberline {7}Security and Access Control}{36}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Security Objectives}{36}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Authentication Architecture}{37}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Authorization and Role-Based Access}{37}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Session and Token Handling}{38}{section.7.4}%
-\contentsline {section}{\numberline {7.5}Vulnerability Mitigation Strategies}{39}{section.7.5}%
-\contentsline {section}{\numberline {7.6}Logout and Expiry Behavior}{40}{section.7.6}%
-\contentsline {section}{\numberline {7.7}Testing and Validation}{40}{section.7.7}%
-\contentsline {section}{\numberline {7.8}Summary}{41}{section.7.8}%
-\contentsline {chapter}{\numberline {8}Agile Development and Project Workflow}{43}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Agile Methodology in Practice}{43}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Development Responsibility and Role Management}{44}{section.8.2}%
-\contentsline {section}{\numberline {8.3}Sprint Planning and Management}{44}{section.8.3}%
-\contentsline {section}{\numberline {8.4}Tools Used During Development}{46}{section.8.4}%
-\contentsline {section}{\numberline {8.5}Challenges and Lessons Learned}{46}{section.8.5}%
-\contentsline {section}{\numberline {8.6}Summary}{48}{section.8.6}%
-\contentsline {chapter}{\numberline {9}AI-Based Seat Suggestion Engine}{49}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Overview}{49}{section.9.1}%
-\contentsline {section}{\numberline {9.2}Problem Statement}{49}{section.9.2}%
-\contentsline {section}{\numberline {9.3}System Architecture}{50}{section.9.3}%
-\contentsline {section}{\numberline {9.4}Input Features and Scoring Logic}{51}{section.9.4}%
-\contentsline {section}{\numberline {9.5}REST API Integration}{52}{section.9.5}%
-\contentsline {section}{\numberline {9.6}User Experience}{53}{section.9.6}%
-\contentsline {section}{\numberline {9.7}Benefits and Impact}{54}{section.9.7}%
-\contentsline {section}{\numberline {9.8}Summary}{54}{section.9.8}%
-\contentsline {chapter}{\numberline {10}Future Enhancements and Research Directions}{56}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Overview}{56}{section.10.1}%
-\contentsline {section}{\numberline {10.2}AI-Powered Seat Recommendations}{56}{section.10.2}%
-\contentsline {section}{\numberline {10.3}Occupancy Sensor and IoT Integration}{58}{section.10.3}%
-\contentsline {section}{\numberline {10.4}Enhanced Reporting and Analytics}{59}{section.10.4}%
-\contentsline {section}{\numberline {10.5}Scalability and Multi-Tenant Support}{60}{section.10.5}%
-\contentsline {section}{\numberline {10.6}Potential Academic Research Topics}{61}{section.10.6}%
-\contentsline {section}{\numberline {10.7}Conclusion}{62}{section.10.7}%
-\contentsline {chapter}{\numberline {A}Entity Class Example (Java)}{63}{appendix.A}%
-\contentsline {chapter}{\numberline {B}REST Controller Sample}{64}{appendix.B}%
-\contentsline {chapter}{\numberline {C}SeatSuggestionDTO Example (Java)}{65}{appendix.C}%
-\contentsline {chapter}{\numberline {D}Python Microservice Endpoint}{66}{appendix.D}%
-\contentsline {chapter}{\numberline {E}SQL Table Definitions}{67}{appendix.E}%
-\contentsline {chapter}{\numberline {F}Flutter Seat Widget Example}{68}{appendix.F}%
-\contentsline {chapter}{\numberline {G}Scoring Function (Python)}{69}{appendix.G}%
+\contentsline {section}{\numberline {5.6}User and Administrator Manual}{29}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}User Functionality}{30}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.2}Admin Functionality}{34}{subsection.5.6.2}%
+\contentsline {subsection}{\numberline {5.6.3}Error Handling and Notifications}{37}{subsection.5.6.3}%
+\contentsline {subsection}{\numberline {5.6.4}Summary}{37}{subsection.5.6.4}%
+\contentsline {section}{\numberline {5.7}Test Results and Known Limitations}{37}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Summary}{38}{section.5.8}%
+\contentsline {chapter}{\numberline {6}Database Design and Optimization}{39}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Relational Schema Design}{39}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Normalization and Design Rationale}{40}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Query Examples}{40}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Indexes and Performance}{41}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Scalability Considerations}{42}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Summary}{42}{section.6.6}%
+\contentsline {chapter}{\numberline {7}Security and Access Control}{44}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Security Objectives}{44}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Authentication Architecture}{45}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Authorization and Role-Based Access}{45}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Session and Token Handling}{46}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Vulnerability Mitigation Strategies}{47}{section.7.5}%
+\contentsline {section}{\numberline {7.6}Logout and Expiry Behavior}{48}{section.7.6}%
+\contentsline {section}{\numberline {7.7}Testing and Validation}{48}{section.7.7}%
+\contentsline {section}{\numberline {7.8}Summary}{49}{section.7.8}%
+\contentsline {chapter}{\numberline {8}Agile Development and Project Workflow}{51}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Agile Methodology in Practice}{51}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Development Responsibility and Role Management}{52}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Sprint Planning and Management}{52}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Tools Used During Development}{54}{section.8.4}%
+\contentsline {section}{\numberline {8.5}Challenges and Lessons Learned}{54}{section.8.5}%
+\contentsline {section}{\numberline {8.6}Summary}{56}{section.8.6}%
+\contentsline {chapter}{\numberline {9}AI-Based Seat Suggestion Engine}{57}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Overview}{57}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Problem Statement}{57}{section.9.2}%
+\contentsline {section}{\numberline {9.3}System Architecture}{58}{section.9.3}%
+\contentsline {section}{\numberline {9.4}Input Features and Scoring Logic}{59}{section.9.4}%
+\contentsline {section}{\numberline {9.5}REST API Integration}{60}{section.9.5}%
+\contentsline {section}{\numberline {9.6}User Experience}{61}{section.9.6}%
+\contentsline {section}{\numberline {9.7}Benefits and Impact}{62}{section.9.7}%
+\contentsline {section}{\numberline {9.8}Summary}{62}{section.9.8}%
+\contentsline {chapter}{\numberline {10}Future Enhancements and Research Directions}{64}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Overview}{64}{section.10.1}%
+\contentsline {section}{\numberline {10.2}AI-Powered Seat Recommendations}{64}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Occupancy Sensor and IoT Integration}{66}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Enhanced Reporting and Analytics}{67}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Scalability and Multi-Tenant Support}{68}{section.10.5}%
+\contentsline {section}{\numberline {10.6}Potential Academic Research Topics}{69}{section.10.6}%
+\contentsline {section}{\numberline {10.7}Conclusion}{70}{section.10.7}%
+\contentsline {chapter}{\numberline {A}Entity Class Example (Java)}{71}{appendix.A}%
+\contentsline {chapter}{\numberline {B}REST Controller Sample}{72}{appendix.B}%
+\contentsline {chapter}{\numberline {C}SeatSuggestionDTO Example (Java)}{73}{appendix.C}%
+\contentsline {chapter}{\numberline {D}Python Microservice Endpoint}{74}{appendix.D}%
+\contentsline {chapter}{\numberline {E}SQL Table Definitions}{75}{appendix.E}%
+\contentsline {chapter}{\numberline {F}Flutter Seat Widget Example}{76}{appendix.F}%
+\contentsline {chapter}{\numberline {G}Scoring Function (Python)}{77}{appendix.G}%

@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1747495503.01367 "/Volumes/Samsung/LucrareLicenta/Lucrare/main.tex" "main.pdf" "main" 1747495504.16653 0
-  "/Volumes/Samsung/LucrareLicenta/Lucrare/main.tex" 1747495501 143673 c349b4cb9dd0aaf568545ae15c7e3b98 ""
+["pdflatex"] 1747676634.12368 "/Volumes/Samsung/LucrareLicenta/Lucrare/main.tex" "main.pdf" "main" 1747676636.54694 0
+  "/Volumes/Samsung/LucrareLicenta/Lucrare/main.tex" 1747676631 147379 85704c41995519735e10b7203b793294 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/tcbx1200.tfm" 1136768653 1536 c09172c8f235393e6235bb4758357c41 ""
@@ -177,10 +177,18 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1730544581.76717 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1730544473 8221427 a40d204f76f4c7ddd3c60d0102a020fe ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "main.aux" 1747495504 15220 94ef3dbe00470867518cb51d852200f3 "pdflatex"
-  "main.out" 1747495504 15021 f3e51650ee380fb437ab7f0dbb0b184e "pdflatex"
-  "main.tex" 1747495501 143673 c349b4cb9dd0aaf568545ae15c7e3b98 ""
-  "main.toc" 1747495504 6857 e1dc7694723fe6d22398580247d33ac3 "pdflatex"
+  "images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 19.56.13.png" 1747673773 138569 e12781fd166b0682662992acc5ab0dfc ""
+  "images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 20.04.04.png" 1747674244 242622 35b5cd9a757bcd22611a98dc382d7838 ""
+  "images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 20.04.14.png" 1747674254 232163 f82c1cf254a002b8581594cc56ef20c3 ""
+  "images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 20.04.30.png" 1747674270 246038 04513a73b0d20f536d487c66a84430d8 ""
+  "images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 20.06.31.png" 1747674391 151667 6e1a3fa123111bddecae1a45549d3034 ""
+  "images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 20.07.03.png" 1747674423 192409 412e7303881f17e5b6a075ef33a225fc ""
+  "images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 20.08.52.png" 1747674533 234272 7a2281de8740d76d78214efb47598ba7 ""
+  "images/login_screen.png" 1747673587 188672 88401d752ec529467041a0d712e61646 ""
+  "main.aux" 1747676636 16895 8e246abf42811b97f6209723da44420c "pdflatex"
+  "main.out" 1747676636 15720 1d76b061b06257274e92ad96d5905fed "pdflatex"
+  "main.tex" 1747676631 147379 85704c41995519735e10b7203b793294 ""
+  "main.toc" 1747676636 7227 db1389f9564883b902f462ccdb408edf "pdflatex"
   (generated)
   "main.aux"
   "main.log"
