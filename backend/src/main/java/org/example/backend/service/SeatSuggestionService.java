@@ -10,6 +10,7 @@ import org.example.backend.persistence.StoreyRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+
 import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class SeatSuggestionService {
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
     private final StoreyRepository storeyRepository;
     private final SeatRepository seatRepository;
     private final BookingRepository bookingRepository;
@@ -50,6 +51,8 @@ public class SeatSuggestionService {
         payload.put("date", date.toString());
         payload.put("seats", all);
         payload.put("bookedSeats", bookedList);
+
+        WebClient webClient = webClientBuilder.baseUrl("http://localhost:5001").build();
 
         Mono<Map> response = webClient.post()
                 .uri("/suggest")

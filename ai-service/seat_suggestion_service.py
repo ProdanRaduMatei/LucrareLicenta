@@ -1,22 +1,38 @@
 from flask import Flask, request, jsonify
-import random
+import joblib
+import numpy as np
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
+model = joblib.load("seat_model.pkl")
 
 @app.route("/suggest", methods=["POST"])
-def suggest_seats():
+def suggest():
     data = request.get_json()
-    user_email = data.get("userEmail")
-    storey_name = data.get("storeyName")
-    date = data.get("date")
+    seats = data["seats"]
+    features = []
+    seat_map = []
 
-    seats = data.get("seats", [])
-    booked = set((b["row"], b["col"]) for b in data.get("bookedSeats", []))
+    for seat in seats:
+        row = seat["row"]
+        col = seat["col"]
+        seat_type = seat.get("seatType", 0)
+        avg_bookings = seat.get("avgBookings", 0.5)
 
-    available = [s for s in seats if (s["row"], s["col"]) not in booked]
+        features.append([row, col, seat_type, avg_bookings])
+        seat_map.append((row, col))
 
-    ranked = sorted(available, key=lambda x: random.random())[:3]
-    suggestions = [{"row": s["row"], "col": s["col"], "score": round(random.uniform(70, 99), 1)} for s in ranked]
+    probs = model.predict_proba(features)[:, 1]
+    scored = list(zip(seat_map, probs))
+    scored.sort(key=lambda x: x[1], reverse=True)
+
+    top = scored[:3]
+    suggestions = [
+        {"row": row, "col": col, "score": round(score * 100, 1)}
+        for (row, col), score in top
+    ]
 
     return jsonify({"suggestions": suggestions})
 
