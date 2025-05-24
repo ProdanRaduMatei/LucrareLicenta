@@ -55,7 +55,7 @@
     {\huge\bfseries SeatSurfer: A Database-Centric Seat Management System\\[0.4cm]}
     \vspace{1.5cm}
     \Large
-    \textbf{Bachelor’s Thesis}\\[0.5cm]
+    \textbf{Bachelor's Thesis}\\[0.5cm]
     \begin{flushleft}
         \textbf{Author:} Prodan Radu-Matei\\
         \textbf{Supervisor:} Lect. Dr. Pop Emilia \\
@@ -89,7 +89,9 @@ Development followed Agile methodology, enabling iterative delivery, continuous 
 
 \section{Context and Motivation}
 
-The COVID-19 pandemic catalyzed a fundamental shift in workplace models. Organizations worldwide began transitioning to hybrid systems, where employees alternate between working remotely and on-site. This shift introduced new logistical challenges — particularly regarding the use and optimization of physical office space.
+The COVID-19 pandemic catalyzed a fundamental shift in workplace models. Organizations worldwide began transitioning to hybrid systems, where employees alternate between working remotely and on-site. This shift introduced new logistical challenges — particularly regarding the use and optimization of physical office space \cite{baker2021hybrid}.
+
+Smart offices use IoT and AI to adapt to dynamic user demands and hybrid scheduling \cite{nayyar2021smart}.
 
 The traditional static assignment of desks became inefficient in a flexible environment. Fixed seating arrangements often led to large areas of underutilized space, while certain days saw unexpected crowding. As workforces became more mobile and flexible, the need for a dynamic, real-time management solution became critical. Companies needed a way to dynamically manage and track seat usage, prevent overcrowding, respect safety regulations, and offer employees autonomy over their workspace choices.
 
@@ -162,20 +164,22 @@ Several academic research initiatives and open-source projects have tackled prob
 However, while valuable, these systems exhibit significant limitations when evaluated against the demands of a modern hybrid workplace. Common shortcomings include:
 
 \begin{itemize}
-    \item \textbf{Administrative Focus:} Many academic or open-source systems are designed primarily for administrators to manage assets but do not offer rich, real-time user experiences for employees or students.
-    % \item \textbf{Legacy Technology Stacks:} A large proportion of existing solutions rely on older web architectures (PHP, basic SQL), making them less adaptable to mobile usage or real-time operations \cite{paas_trends}.
-    \item \textbf{Poor Usability and Limited Mobile Access:} Usability and accessibility are often secondary priorities, resulting in interfaces that are non-responsive or difficult to use on smartphones and tablets.
-    \item \textbf{Static Data Models:} Many systems assume static resource inventories rather than dynamically changing floor plans, which are essential in flexible hybrid workspaces.
-    \item \textbf{Security and Access Control Gaps:} Several open-source schedulers lack modern authentication mechanisms like OAuth2 or role-based access control, limiting their applicability in corporate environments.
+\item \textbf{Administrative Focus:} Many academic or open-source systems are designed primarily for administrators to manage assets but do not offer rich, real-time user experiences for employees or students.
+% \item \textbf{Legacy Technology Stacks:} A large proportion of existing solutions rely on older web architectures (PHP, basic SQL), making them less adaptable to mobile usage or real-time operations \cite{paas_trends}.
+\item \textbf{Poor Usability and Limited Mobile Access:} Usability and accessibility are often secondary priorities, resulting in interfaces that are non-responsive or difficult to use on smartphones and tablets.
+\item \textbf{Static Data Models:} Many systems assume static resource inventories rather than dynamically changing floor plans, which are essential in flexible hybrid workspaces.
+\item \textbf{Security and Access Control Gaps:} Several open-source schedulers lack modern authentication mechanisms like OAuth2 or role-based access control, limiting their applicability in corporate environments.
 \end{itemize}
+
+Moreover, recent research highlights how IoT-enabled seat booking systems can improve space utilization through real-time monitoring and adaptive control strategies, aligning directly with SeatSurfer's design goals \cite{rahman2020iot}.
 
 In contrast, \textbf{SeatSurfer} provides a dynamic, scalable, and secure system explicitly designed to meet the needs of hybrid workplaces. By leveraging modern frameworks such as Flutter for the frontend and Spring Boot for the backend, and by focusing on user-centered design and real-time interaction, SeatSurfer addresses gaps left open by earlier academic and open-source efforts.
 
 The platform offers the following key advantages:
 \begin{itemize}
-    \item \textbf{Full-stack architecture:} A responsive, modern user interface developed in Flutter, integrated with a robust, RESTful backend powered by Spring Boot.
-    \item \textbf{Custom data model:} A relational schema specifically designed for flexible desk and seat management, supporting dynamic layouts and real-time availability tracking.
-    \item \textbf{Transparency and extensibility:} An openly structured database optimized for future enhancements, including advanced analytics, reporting modules, and integrations with third-party tools or sensors.
+\item \textbf{Full-stack architecture:} A responsive, modern user interface developed in Flutter, integrated with a robust, RESTful backend powered by Spring Boot.
+\item \textbf{Custom data model:} A relational schema specifically designed for flexible desk and seat management, supporting dynamic layouts and real-time availability tracking.
+\item \textbf{Transparency and extensibility:} An openly structured database optimized for future enhancements, including advanced analytics, reporting modules, and integrations with third-party tools or sensors.
 \end{itemize}
 
 \section{Innovations Introduced by SeatSurfer}
@@ -240,52 +244,46 @@ This stack was deliberately selected to balance development speed, scalability, 
 
 \section{Flutter: The User Interface Layer}
 
-Flutter, developed by Google, is a modern open-source framework that empowers developers to build natively compiled applications from a single codebase for Android, iOS, web, and desktop. This cross-platform capability is crucial for projects like SeatSurfer, which aim to provide a seamless and consistent user experience across a variety of devices without duplicating development effort.
+Flutter, developed by Google, is a modern open-source framework that empowers developers to build natively compiled applications from a single codebase for Android, iOS, web, and desktop. This cross-platform capability is crucial for projects like SeatSurfer, which aim to provide a seamless and consistent user experience across a variety of devices without duplicating development effort. Flutter supports expressive UIs for mobile, desktop, and web platforms from a single codebase \cite{google2022flutter}. Responsive and intuitive layouts are essential for usability in hybrid booking apps, making Flutter a strong fit for this domain \cite{verma2023flutter}.
 
 Flutter's architecture is built around a high-performance rendering engine (Skia), allowing it to bypass native UI components and instead render every pixel directly, ensuring full control over the look and feel of the application. It provides a fast development cycle, with features such as stateful hot reload, making it ideal for iterative UI development and debugging.
 
 Key features that made Flutter suitable for SeatSurfer include:
 
 \begin{itemize}
-    \item \textbf{Declarative widget system:} Inspired by React, Flutter uses a tree of composable widgets for building UIs. Each widget describes part of the interface, and the framework efficiently rebuilds only the affected parts of the UI when state changes occur. This approach promotes reusable, testable components.
-    
-    \item \textbf{Rich UI controls and animation libraries:} Flutter includes a vast set of pre-built widgets that adhere to both Material Design (Android) and Cupertino (iOS) principles, along with powerful animation APIs for building polished interfaces. This enabled the SeatSurfer team to design intuitive transitions, dialogs, and dynamic visual feedback (e.g., seat hover and selection animations).
-    
-    \item \textbf{Integrated HTTP packages:} The \texttt{http} and \texttt{dio} packages allow Flutter to easily consume RESTful APIs. These were used extensively in SeatSurfer to communicate with the backend services for actions like login, fetching seat availability, creating or canceling bookings, and accessing analytics data.
+\item \textbf{Declarative widget system:} Inspired by React, Flutter uses a tree of composable widgets for building UIs. Each widget describes part of the interface, and the framework efficiently rebuilds only the affected parts of the UI when state changes occur. This approach promotes reusable, testable components.
+\item \textbf{Rich UI controls and animation libraries:} Flutter includes a vast set of pre-built widgets that adhere to both Material Design (Android) and Cupertino (iOS) principles, along with powerful animation APIs for building polished interfaces. This enabled the SeatSurfer team to design intuitive transitions, dialogs, and dynamic visual feedback (e.g., seat hover and selection animations).
+\item \textbf{Integrated HTTP packages:} The \texttt{http} and \texttt{dio} packages allow Flutter to easily consume RESTful APIs. These were used extensively in SeatSurfer to communicate with the backend services for actions like login, fetching seat availability, creating or canceling bookings, and accessing analytics data.
 \end{itemize}
 
 In the context of SeatSurfer, Flutter was instrumental in implementing a responsive, interactive interface tailored for both regular users and administrators:
 
 \begin{itemize}
-    \item \textbf{Visual matrix-based seat layout:} A dynamic, color-coded grid that visually represents the seat availability on each floor. Each seat cell can be tapped to trigger bookings or view status, with real-time UI updates based on API responses.
-    
-    \item \textbf{Interactive date picker and floor selection screens:} These components allow users to quickly select the date and floor for which they want to view or reserve seats. These selections trigger live data updates from the backend, ensuring that users always see accurate seat availability.
-    
-    \item \textbf{Responsive admin dashboards and booking listings:} Admins access a separate interface for configuring layouts, viewing usage statistics, and managing bookings. The UI adapts fluidly across devices and screen sizes, maintaining usability whether accessed from a mobile phone, tablet, or desktop browser.
+\item \textbf{Visual matrix-based seat layout:} A dynamic, color-coded grid that visually represents the seat availability on each floor. Each seat cell can be tapped to trigger bookings or view status, with real-time UI updates based on API responses.
+\item \textbf{Interactive date picker and floor selection screens:} These components allow users to quickly select the date and floor for which they want to view or reserve seats. These selections trigger live data updates from the backend, ensuring that users always see accurate seat availability.
+\item \textbf{Responsive admin dashboards and booking listings:} Admins access a separate interface for configuring layouts, viewing usage statistics, and managing bookings. The UI adapts fluidly across devices and screen sizes, maintaining usability whether accessed from a mobile phone, tablet, or desktop browser.
 \end{itemize}
 
 By leveraging Flutter's cross-platform consistency, rich visual tools, and high development velocity, the SeatSurfer frontend achieved a professional, mobile-first interface with minimal overhead. This not only improved user experience but also accelerated development and testing cycles throughout the project.
 
 \section{Spring Boot: RESTful Backend}
 
-Spring Boot is a robust, production-grade framework built on top of the Spring ecosystem. It simplifies the setup and development of stand-alone, enterprise-grade applications in Java by providing pre-configured defaults, embedded servers (like Tomcat), and a vast ecosystem of modular components. Spring Boot enables rapid development of RESTful APIs, supports microservice architectures, and includes essential features such as dependency injection, aspect-oriented programming, and robust testing frameworks.
+Spring Boot is a robust, production-grade framework built on top of the Spring ecosystem. It simplifies the setup and development of stand-alone, enterprise-grade applications in Java by providing pre-configured defaults, embedded servers (like Tomcat), and a vast ecosystem of modular components. Spring Boot enables rapid development of RESTful APIs, supports microservice architectures, and includes essential features such as dependency injection, aspect-oriented programming, and robust testing frameworks. Spring Boot simplifies the development of REST APIs and integrates seamlessly with Spring Security \cite{baeldung2023springapi}.
 
 At the core of Spring Boot lies the concept of convention over configuration, significantly reducing boilerplate code and letting developers focus on business logic. The framework also integrates smoothly with popular tools and technologies such as Maven, Gradle, and Docker, making it ideal for scalable backend services.
 
 In the SeatSurfer platform, Spring Boot serves as the backbone of the server-side logic. It is responsible for managing business workflows, securing endpoints, validating input data, and coordinating database operations. Specifically, Spring Boot handles:
 
 \begin{itemize}
-    \item \textbf{Booking creation, validation, and cancellation logic:} When a user attempts to book a seat, the system checks for availability, prevents double-booking, and persists the request. Similar workflows exist for booking cancellation and conflict resolution, all encapsulated within service-layer components.
-
-    \item \textbf{Role-based endpoint security using Spring Security:} Spring Security provides a comprehensive authentication and authorization framework. In SeatSurfer, it ensures that only authenticated users can access the booking endpoints, and that administrative privileges are required for management actions such as editing floor layouts or generating occupancy data.
-
-    \item \textbf{Layered separation (Controller → Service → Repository):} The backend is structured following the layered architecture model:
-    \begin{itemize}
-        \item The \textbf{Controller layer} maps HTTP requests to Java methods and handles incoming API calls.
-        \item The \textbf{Service layer} contains business logic, such as validating booking dates or checking user roles.
-        \item The \textbf{Repository layer} interacts with the PostgreSQL database using JPA repositories.
-    \end{itemize}
-    This clean separation promotes modularity, testability, and easier maintenance.
+\item \textbf{Booking creation, validation, and cancellation logic:} When a user attempts to book a seat, the system checks for availability, prevents double-booking, and persists the request. Similar workflows exist for booking cancellation and conflict resolution, all encapsulated within service-layer components.
+\item \textbf{Role-based endpoint security using Spring Security:} Spring Security provides a comprehensive authentication and authorization framework. In SeatSurfer, it ensures that only authenticated users can access the booking endpoints, and that administrative privileges are required for management actions such as editing floor layouts or generating occupancy data.
+\item \textbf{Layered separation (Controller → Service → Repository):} The backend is structured following the layered architecture model:
+\begin{itemize}
+    \item The \textbf{Controller layer} maps HTTP requests to Java methods and handles incoming API calls.
+    \item The \textbf{Service layer} contains business logic, such as validating booking dates or checking user roles.
+    \item The \textbf{Repository layer} interacts with the PostgreSQL database using JPA repositories.
+\end{itemize}
+This clean separation promotes modularity, testability, and easier maintenance.
 \end{itemize}
 
 Spring Boot also includes built-in support for automatic serialization of Java objects into JSON responses, making it ideal for use in REST APIs. Through annotations like \texttt{@RestController}, \texttt{@GetMapping}, and \texttt{@PostMapping}, the backend exposes intuitive, well-structured endpoints that are consumed by the Flutter frontend.
@@ -296,28 +294,23 @@ By leveraging the Spring Boot framework, SeatSurfer benefits from a powerful and
 
 \section{PostgreSQL: Relational Database Engine}
 
-PostgreSQL is a powerful, open-source relational database system known for its reliability, feature richness, and strict adherence to SQL standards. It was chosen for the SeatSurfer platform because it provides an optimal balance between performance, flexibility, and data integrity, making it particularly suitable for systems with complex relational logic like seat reservations and occupancy management.
+PostgreSQL is a powerful, open-source relational database system known for its reliability, feature richness, and strict adherence to SQL standards. It was chosen for the SeatSurfer platform because it provides an optimal balance between performance, flexibility, and data integrity, making it particularly suitable for systems with complex relational logic like seat reservations and occupancy management. PostgreSQL enables scalable, normalized relational data modeling with extensive indexing options \cite{postgresql2023docs}.
 
 Key reasons for selecting PostgreSQL include:
 
 \begin{itemize}
-    \item \textbf{Full SQL support and transaction safety:} PostgreSQL supports all standard SQL operations and features ACID compliance, which ensures atomicity, consistency, isolation, and durability of transactions. This guarantees that booking operations in SeatSurfer, such as seat allocation or cancellation, are executed reliably and safely — even under concurrent access.
-
-    \item \textbf{Strong indexing capabilities for read optimization:} PostgreSQL allows the creation of advanced index types (e.g., B-tree, hash, GIN, and GiST), which drastically improve the performance of frequent queries. SeatSurfer takes advantage of this by indexing critical columns like \texttt{booking\_date}, \texttt{seat\_id}, and \texttt{floor\_id} to enable fast lookups for available or occupied seats.
-
-    \item \textbf{Support for complex joins and relational constraints:} The platform relies on multiple table relationships (e.g., many-to-one between bookings and users), which PostgreSQL handles seamlessly. It supports foreign key constraints, cascading actions, and sophisticated joins, enabling accurate tracking of bookings across users, seats, and floors.
+\item \textbf{Full SQL support and transaction safety:} PostgreSQL supports all standard SQL operations and features ACID compliance, which ensures atomicity, consistency, isolation, and durability of transactions. This guarantees that booking operations in SeatSurfer, such as seat allocation or cancellation, are executed reliably and safely — even under concurrent access.
+\item \textbf{Strong indexing capabilities for read optimization:} PostgreSQL allows the creation of advanced index types (e.g., B-tree, hash, GIN, and GiST), which drastically improve the performance of frequent queries. SeatSurfer takes advantage of this by indexing critical columns like \texttt{booking\_date}, \texttt{seat\_id}, and \texttt{floor\_id} to enable fast lookups for available or occupied seats.
+\item \textbf{Support for complex joins and relational constraints:} The platform relies on multiple table relationships (e.g., many-to-one between bookings and users), which PostgreSQL handles seamlessly. It supports foreign key constraints, cascading actions, and sophisticated joins, enabling accurate tracking of bookings across users, seats, and floors.
 \end{itemize}
 
 In SeatSurfer, PostgreSQL serves as the persistent data store for all core entities, modeled as normalized tables to maintain data consistency and avoid redundancy. The main entities include:
 
 \begin{itemize}
-    \item \textbf{Users:} Stores essential authentication and authorization details, including \texttt{id}, \texttt{email}, and \texttt{role}. This table is directly linked to the bookings via a foreign key, enforcing referential integrity.
-
-    \item \textbf{Floors:} Represents physical office layouts with attributes like \texttt{id}, \texttt{name}, and layout dimensions (e.g., number of rows and columns). Each floor acts as a container for a specific group of seats.
-
-    \item \textbf{Seats:} Each seat is associated with a particular floor and is defined by its row and column coordinates, along with its activation status (available or not). This table supports real-time seat visualization in the frontend.
-
-    \item \textbf{Bookings:} Captures each reservation made by users, storing the \texttt{userId}, \texttt{seatId}, and the \texttt{booking\_date}. Constraints ensure that a seat cannot be double-booked on the same date.
+\item \textbf{Users:} Stores essential authentication and authorization details, including \texttt{id}, \texttt{email}, and \texttt{role}. This table is directly linked to the bookings via a foreign key, enforcing referential integrity.
+\item \textbf{Floors:} Represents physical office layouts with attributes like \texttt{id}, \texttt{name}, and layout dimensions (e.g., number of rows and columns). Each floor acts as a container for a specific group of seats.
+\item \textbf{Seats:} Each seat is associated with a particular floor and is defined by its row and column coordinates, along with its activation status (available or not). This table supports real-time seat visualization in the frontend.
+\item \textbf{Bookings:} Captures each reservation made by users, storing the \texttt{userId}, \texttt{seatId}, and the \texttt{booking\_date}. Constraints ensure that a seat cannot be double-booked on the same date.
 \end{itemize}
 
 Additionally, PostgreSQL's extensibility allows for future enhancements such as stored procedures, triggers for auditing changes, or even partitioning strategies for scalability. Its compatibility with modern cloud platforms (e.g., Railway, Supabase, or AWS RDS) ensures that SeatSurfer's database layer can evolve alongside growing user demands.
@@ -712,7 +705,7 @@ The design of SeatSurfer prioritizes clarity, responsiveness, and ease of use, w
 
 \begin{itemize}
     \item \textbf{Minimalistic UI with prominent date selection and seat layout:}  
-    The interface follows a clean, distraction-free design that places key actions (such as selecting a floor or choosing a date) at the center of the user flow. The seat matrix is visually intuitive, allowing users to quickly understand seat availability through color cues.
+    The interface follows a clean, distraction-free design that places key actions (such as selecting a floor or choosing a date) at the center of the user flow. The seat matrix is visually intuitive, allowing users to quickly understand seat availability through color cues. Date selection and layout rendering patterns improve accessibility for non-technical users \cite{santos2022uxpatterns}.
 
     \item \textbf{Confirmation dialogs for critical actions:}  
     To prevent unintended actions, all operations such as booking a seat or navigating away from a filled form are gated behind confirmation prompts. This ensures that the user is always in control and can avoid mistakes.
@@ -759,6 +752,7 @@ The Flutter application was tested manually on both desktop and mobile environme
     \item \textbf{Browser and device compatibility:} Tested in Google Chrome, Android Emulator, and on a physical Pixel 5 device.
     \item \textbf{Responsive behavior:} Verified correct rendering and usability across screen sizes from smartphones to laptops.
     \item \textbf{State management validation:} Ensured consistency when navigating between views (e.g., booking screen to booking list and back) and after performing actions such as canceling a seat.
+    \item \textbf{Performance under load:} Particular attention was paid to rendering performance when loading large seat layouts or analytics dashboards, in line with best practices for Flutter performance optimization \cite{garcia2021flutterperf}.
 \end{itemize}
 
 \subsection*{4. Access Control Testing}
@@ -928,7 +922,7 @@ The schema's normalized structure not only improves query efficiency but also la
 
 \section{Normalization and Design Rationale}
 
-The SeatSurfer database schema adheres strictly to relational database normalization principles, ensuring data consistency, efficient storage, and minimal redundancy. Each table and relationship has been designed to avoid anomalies during insertion, deletion, and updates.
+The SeatSurfer database schema adheres strictly to relational database normalization principles, ensuring data consistency, efficient storage, and minimal redundancy. Each table and relationship has been designed to avoid anomalies during insertion, deletion, and updates. Normalized schema design avoids redundancy and improves query clarity and maintainability \cite{davis2021datamodeling}.
 
 The schema conforms to the following normal forms:
 
@@ -984,23 +978,21 @@ WHERE s.floor_id = 2 AND s.active = TRUE AND b.id IS NULL;
 
 \section{Indexes and Performance}
 
-Given the nature of SeatSurfer as a booking system that frequently queries seat availability and occupancy patterns, performance optimization was a priority in database design. Since the application is read-heavy — with users constantly retrieving seat status and booking details — several indexes were introduced to accelerate query execution and reduce latency.
+Given the nature of SeatSurfer as a booking system that frequently queries seat availability and occupancy patterns, performance optimization was a priority in database design. Since the application is read-heavy — with users constantly retrieving seat status and booking details — several indexes were introduced to accelerate query execution and reduce latency. Index optimization and constraint enforcement in PostgreSQL reduce query latency significantly, particularly in scenarios involving real-time data retrieval and constraint validation \cite{lee2022postgisi}.
 
 The following indexes were implemented:
 
 \begin{itemize}
-    \item \textbf{\texttt{booking\_date}} index on the \texttt{bookings} table: Enables fast filtering of bookings by date, which is a common use case when querying availability or generating statistics for a particular day.
-    
-    \item \textbf{Composite index on \texttt{(seat\_id, booking\_date)}}: This index significantly improves performance for conflict detection queries, such as checking whether a seat is already booked for a selected date. By combining the most commonly filtered columns, this index reduces the need for full-table scans.
-    
-    \item \textbf{\texttt{floor\_id}} index on the \texttt{seats} table: Facilitates efficient filtering of seats by floor, which is essential when loading floor layouts or computing seat-level statistics for administrative dashboards.
+\item \textbf{\texttt{booking\_date}} index on the \texttt{bookings} table: Enables fast filtering of bookings by date, which is a common use case when querying availability or generating statistics for a particular day.
+\item \textbf{Composite index on \texttt{(seat\_id, booking\_date)}}: This index significantly improves performance for conflict detection queries, such as checking whether a seat is already booked for a selected date. By combining the most commonly filtered columns, this index reduces the need for full-table scans.
+\item \textbf{\texttt{floor\_id}} index on the \texttt{seats} table: Facilitates efficient filtering of seats by floor, which is essential when loading floor layouts or computing seat-level statistics for administrative dashboards.
 \end{itemize}
 
 Performance testing conducted on a local PostgreSQL instance with a moderate dataset (thousands of bookings and seats) demonstrated a measurable improvement in execution time. For example:
 
 \begin{itemize}
-    \item Conflict detection queries improved from ~40ms (unindexed) to under 5ms with the composite index in place.
-    \item Aggregation queries for floor-level seat statistics (e.g., booked vs. available) executed approximately 4-6x faster.
+\item Conflict detection queries improved from ~40ms (unindexed) to under 5ms with the composite index in place.
+\item Aggregation queries for floor-level seat statistics (e.g., booked vs. available) executed approximately 4-6x faster.
 \end{itemize}
 
 These optimizations ensure a smooth user experience even under increased load. As the platform scales, additional indexing strategies — such as partial indexes for active seats or index-only scans — can be explored to maintain consistent response times. Periodic analysis using PostgreSQL's \texttt{EXPLAIN ANALYZE} will help validate query plans and identify future tuning opportunities.
@@ -1040,7 +1032,7 @@ Furthermore, the schema's layered design mirrors the application's architecture,
 
 \section{Security Objectives}
 
-Given that SeatSurfer handles sensitive user information, including login credentials and booking data, as well as administrative operations with elevated privileges, ensuring a secure system architecture is essential. Security is not an afterthought but a foundational pillar of the platform’s design, deeply integrated into both the backend services and frontend behavior.
+Given that SeatSurfer handles sensitive user information, including login credentials and booking data, as well as administrative operations with elevated privileges, ensuring a secure system architecture is essential. Security is not an afterthought but a foundational pillar of the platform's design, deeply integrated into both the backend services and frontend behavior.
 
 The primary security objectives that guide the design and implementation of the SeatSurfer system are as follows:
 
@@ -1051,7 +1043,7 @@ The primary security objectives that guide the design and implementation of the 
     
     \item \textbf{Secure Credential Handling:} User credentials are stored securely using one-way cryptographic hashing (e.g., BCrypt). Passwords are never stored or transmitted in plain text, and login processes are protected against brute force attacks by enforcing session policies and optional rate-limiting mechanisms.
     
-    \item \textbf{Threat Mitigation at Design Level:} Common web vulnerabilities such as SQL injection, cross-site scripting (XSS), cross-site request forgery (CSRF), and session hijacking are mitigated through the use of secure frameworks (Spring Security), ORM-based query execution, CSRF token usage, and secure cookie/session configurations.
+    \item \textbf{Threat Mitigation at Design Level:} Common web vulnerabilities such as SQL injection, cross-site scripting (XSS), cross-site request forgery (CSRF), and session hijacking are mitigated through the use of secure frameworks (Spring Security), ORM-based query execution, CSRF token usage, and secure cookie/session configurations. Best practices in API authentication and CSRF protection help secure RESTful services from such vulnerabilities \cite{sharma2023privacy}.
 \end{itemize}
 
 By aligning with these security goals, SeatSurfer provides a resilient foundation that protects both end users and administrators from malicious threats, while maintaining system integrity and data confidentiality across all layers of the application.
@@ -1079,32 +1071,33 @@ Authorization in SeatSurfer ensures that only users with appropriate permissions
     \item \verb|ROLE_ADMIN| — Administrators who have extended privileges including floor layout configuration, seat activation/deactivation, and access to aggregated seat usage data and system-wide booking visibility.
 \end{itemize}
 
-These roles are enforced by Spring Security using both method-level annotations (e.g., \verb|@PreAuthorize|) and route-level restrictions defined in the HTTP security configuration. This ensures strict separation of concerns and protection of administrative functions from unauthorized users.
+These roles are enforced by Spring Security using both method-level annotations (e.g., \verb|@PreAuthorize|) and route-level restrictions defined in the HTTP security configuration. Role-based access control (RBAC) improves security in enterprise-grade web applications by limiting access based on predefined roles and responsibilities \cite{patel2020rbac}. This ensures strict separation of concerns and protection of administrative functions from unauthorized users.
 
 \subsection*{HTTP Endpoint Protection Example}
 
 The snippet below shows how routes are secured based on user roles. Administrative endpoints are only accessible to users with \verb|ROLE_ADMIN|, while booking-related endpoints are accessible to both regular users and admins.
 
 \begin{lstlisting}[language=Java, caption=Spring Security Configuration]
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-                .antMatchers("/api/admin/**").hasRole("ADMIN")
-                .antMatchers("/api/bookings/**").hasAnyRole("USER", "ADMIN")
-                .anyRequest().authenticated()
-            .and()
-            .formLogin()
-                .permitAll()
-            .and()
-            .logout()
-                .permitAll();
-    }
+@Override
+protected void configure(HttpSecurity http) throws Exception {
+    http
+        .authorizeRequests()
+            .antMatchers("/api/admin/**").hasRole("ADMIN")
+            .antMatchers("/api/bookings/**").hasAnyRole("USER", "ADMIN")
+            .anyRequest().authenticated()
+        .and()
+        .formLogin()
+            .permitAll()
+        .and()
+        .logout()
+            .permitAll();
+}
 \end{lstlisting}
+
 This configuration ensures that unauthorized attempts to access protected routes result in appropriate error codes:
 \begin{itemize}
-\item \textbf{HTTP 401 Unauthorized} — When the user is not authenticated (not logged in).
-\item \textbf{HTTP 403 Forbidden} — When the user is authenticated but lacks the required role.
+    \item \textbf{HTTP 401 Unauthorized} — When the user is not authenticated (not logged in).
+    \item \textbf{HTTP 403 Forbidden} — When the user is authenticated but lacks the required role.
 \end{itemize}
 
 These mechanisms collectively ensure that sensitive operations such as layout modification and access to organizational data are restricted to authorized personnel only, maintaining system integrity and trust.
@@ -1114,13 +1107,14 @@ These mechanisms collectively ensure that sensitive operations such as layout mo
 SeatSurfer implements two complementary mechanisms for managing user authentication state, catering to a wide range of use cases—from traditional web applications to modern mobile clients:
 
 \begin{itemize}
-\item \textbf{Session-Based Authentication (Default):}
-After a successful login through the standard login form, a session is established and maintained by the Spring Security context. A secure, HTTP-only cookie is sent to the client and used to automatically authenticate subsequent requests. This approach is particularly effective for browser-based workflows, offering automatic session tracking, configurable timeouts, and centralized session invalidation on logout.
-\item \textbf{Stateless Token-Based Authentication (Optional):}  
-As an alternative, the backend can issue JWT (JSON Web Tokens) upon successful authentication. These tokens encode essential user claims such as roles and expiration timestamps, and must be manually included in each request's header. This stateless approach is better suited for mobile apps, Flutter web deployments, or APIs that scale horizontally, since it removes the need for server-side session storage.
+    \item \textbf{Session-Based Authentication (Default):}
+    After a successful login through the standard login form, a session is established and maintained by the Spring Security context. A secure, HTTP-only cookie is sent to the client and used to automatically authenticate subsequent requests. This approach is particularly effective for browser-based workflows, offering automatic session tracking, configurable timeouts, and centralized session invalidation on logout.
+    
+    \item \textbf{Stateless Token-Based Authentication (Optional):}  
+    As an alternative, the backend can issue JWT (JSON Web Tokens) upon successful authentication. These tokens encode essential user claims such as roles and expiration timestamps, and must be manually included in each request's header. This stateless approach is better suited for mobile apps, Flutter web deployments, or APIs that scale horizontally, since it removes the need for server-side session storage.
 \end{itemize}
 
-The system is designed to allow either method based on deployment configuration, client type, and desired scalability. In both cases, protected endpoints are still subject to Spring Security's role-based access rules.
+Session-based authentication and JWTs provide scalable access control in web applications by balancing stateful simplicity and stateless performance benefits \cite{jain2023jwt}. The system is designed to allow either method based on deployment configuration, client type, and desired scalability. In both cases, protected endpoints are still subject to Spring Security's role-based access rules.
 
 \subsection*{JWT Header Example}
 
@@ -1192,6 +1186,7 @@ Extensive manual tests were performed using Postman to simulate user behavior wi
 \item Perform unauthorized actions as a regular user (e.g., accessing admin routes)
 \end{itemize}
 These tests confirmed that authentication gates and role checks returned appropriate HTTP 401 (Unauthorized) or 403 (Forbidden) responses.
+
 \item \textbf{Integration Testing for Endpoint Protection:}  
 Automated integration tests were written to validate the behavior of protected REST API endpoints. These tests verified that:
 \begin{itemize}
@@ -1212,6 +1207,9 @@ This confirmed that security logic was consistently enforced across both fronten
 
 \item \textbf{Edge Case Scenarios:}  
 Additional checks were performed to test edge cases, such as multiple concurrent sessions, logout handling, and rapid token refresh cycles. These scenarios validated the resilience of the authentication flow and session management system.
+
+\item \textbf{System Monitoring and Observability:}  
+Security validation was extended with backend instrumentation and logging tools to monitor authentication flows, access patterns, and anomalous activity. Continuous monitoring of service health and request logs helped proactively identify potential issues and ensured real-time visibility into system performance \cite{miller2021microservices}.
 \end{itemize}
 
 This multi-tier testing approach ensured that security policies in SeatSurfer were enforced accurately, user roles were respected, and no privilege escalation or unauthorized access pathways were left unguarded.
@@ -1235,7 +1233,7 @@ As hybrid workplaces continue to grow in complexity and size, SeatSurfer is well
 
 The development of SeatSurfer was structured around the Agile software development methodology, with a particular focus on the Scrum framework. Agile was selected not only for its adaptability to changing requirements, but also for its emphasis on collaboration, user-centered development, and rapid, incremental progress.
 
-This approach allowed for structured iteration, constant refinement of deliverables, and early identification of blockers — ensuring that the system remained aligned with both technical objectives and practical use cases throughout its evolution.
+This approach allowed for structured iteration, constant refinement of deliverables, and early identification of blockers — ensuring that the system remained aligned with both technical objectives and practical use cases throughout its evolution. Agile development methods can also be adapted effectively for solo developers, allowing for personal velocity tracking, iterative delivery, and milestone-based progress validation \cite{smith2022agile}.
 
 The key Agile principles applied throughout the SeatSurfer project included:
 
@@ -1244,10 +1242,8 @@ The key Agile principles applied throughout the SeatSurfer project included:
 Development work was divided into short, manageable time-boxed intervals (sprints), each focusing on delivering a specific set of features. This enabled regular evaluation of progress and ensured continuous forward movement, even in the presence of evolving priorities.
 \item \textbf{Continuous User Feedback Integration:}  
 After each iteration, feedback was gathered through peer reviews and hands-on testing. This feedback loop influenced upcoming sprint goals and helped fine-tune both frontend usability and backend performance.
-
 \item \textbf{Adaptability to Changing Requirements:}  
 Requirements were treated as dynamic rather than fixed. For example, new administrative tools were added mid-development based on evolving project goals, and existing features were improved iteratively based on test results and interface feedback.
-
 \item \textbf{Emphasis on Working Software Over Documentation:}  
 While documentation was maintained throughout, the focus remained on delivering functional, testable components. This philosophy ensured that every sprint produced tangible output — whether a new booking flow, layout configuration interface, or a tested API endpoint.
 \end{itemize}
@@ -1280,44 +1276,35 @@ Managing the entire software development lifecycle independently not only deepen
 
 \section{Sprint Planning and Management}
 
-To maintain momentum and ensure structured progress, the SeatSurfer project was organized into five focused, one-week sprints. Even as a solo developer, I applied Scrum-inspired Agile principles to stay disciplined, set clear weekly objectives, and incrementally build and refine the system. This iterative workflow allowed for continuous improvement and flexibility in response to new challenges or insights.
+To maintain momentum and ensure structured progress, the SeatSurfer project was organized into five focused, one-week sprints. Even as a solo developer, I applied Scrum-inspired Agile principles to stay disciplined, set clear weekly objectives, and incrementally build and refine the system. This iterative workflow allowed for continuous improvement and flexibility in response to new challenges or insights. Solo Agile teams benefit significantly from modular design and strict sprint planning, helping maintain focus, adaptability, and timely delivery \cite{zhang2023agiletesting}.
 
 Each sprint followed a lightweight but effective cycle:
 
 \begin{itemize}
-\item \textbf{Sprint Planning:} At the beginning of each week, I outlined concrete goals and identified the user stories or technical tasks to be addressed. Priorities were based on project dependencies, complexity, and immediate value to the system.
-\item \textbf{Daily Task Tracking:} Each day began with a review of current progress and an assessment of any blockers. This replaced the need for stand-ups and helped maintain a strong development rhythm.
-
-\item \textbf{Mid-Sprint Adjustments:} Mid-week, I reassessed the sprint scope to adapt to new requirements, unexpected bugs, or design refinements, ensuring realistic delivery of high-priority items.
-
-\item \textbf{Sprint Review and Retrospective:} At the end of each sprint, I validated completed features, documented what went well, and noted any workflow issues or technical debt to address in future sprints.
-\item \end{itemize}
+    \item \textbf{Sprint Planning:} At the beginning of each week, I outlined concrete goals and identified the user stories or technical tasks to be addressed. Priorities were based on project dependencies, complexity, and immediate value to the system.
+    \item \textbf{Daily Task Tracking:} Each day began with a review of current progress and an assessment of any blockers. This replaced the need for stand-ups and helped maintain a strong development rhythm.
+    \item \textbf{Mid-Sprint Adjustments:} Mid-week, I reassessed the sprint scope to adapt to new requirements, unexpected bugs, or design refinements, ensuring realistic delivery of high-priority items.
+    \item \textbf{Sprint Review and Retrospective:} At the end of each sprint, I validated completed features, documented what went well, and noted any workflow issues or technical debt to address in future sprints.
+\end{itemize}
 
 \subsection*{Sprint Goals and Milestones}
-
 \begin{itemize}
-\item \textbf{Sprint 1: Database Design and Project Setup}
-Defined the core domain model and designed the relational schema (admins, users, bookings, seats, floors, buildings). Set up the Spring Boot project structure, PostgreSQL integration, and local development environment.
-\item \textbf{Sprint 2: User Management and Authentication}  
-Implemented the basic login system using Spring Security. Developed the user-role model (\texttt{ROLE\_USER}, \texttt{ROLE\_ADMIN}) and added session-based authentication logic. Built initial REST endpoints for login and user management.
-
-\item \textbf{Sprint 3: Core Backend Features - Booking Logic}  
-Developed core booking functionality, including REST endpoints for creating, viewing, and canceling bookings. Validated seat availability and conflict detection. Created initial DTOs and service-repository architecture.
-
-\item \textbf{Sprint 4: Frontend Foundations - Flutter UI Setup}  
-Set up the Flutter project and implemented the main navigation structure. Created reusable widgets for input fields, buttons, and page layouts. Connected to backend APIs for login and seat data retrieval.
-
-\item \textbf{Sprint 5: Floor Visualization and Seat Layout}  
-Implemented the matrix-style seat selection screen in Flutter. Enabled floor selection and seat status rendering (available, booked, inactive). Integrated API calls to fetch layout configurations dynamically.
-
-\item \textbf{Sprint 6: Admin Tools and Role-Based Control}  
-Developed the administrator dashboard, including forms for floor and seat configuration. Added logic for seat activation/deactivation. Secured admin endpoints using role-based access filters in both backend and frontend.
-
-\item \textbf{Sprint 7: Booking Statistics and UI Refinement}  
-Added support for daily seat usage data, including booked/available/total counters. Improved responsiveness of the Flutter layout for mobile and tablet views. Simplified booking forms and added confirmation dialogs.
-
-\item \textbf{Sprint 8: Testing, Final Polish, and Deployment Prep}  
-Performed comprehensive manual and API testing. Addressed edge cases, session behaviors, and error handling. Refactored backend code, organized source files, and prepared the final build for submission.
+    \item \textbf{Sprint 1: Database Design and Project Setup}  
+    Defined the core domain model and designed the relational schema (admins, users, bookings, seats, floors, buildings). Set up the Spring Boot project structure, PostgreSQL integration, and local development environment.
+    \item \textbf{Sprint 2: User Management and Authentication}  
+    Implemented the basic login system using Spring Security. Developed the user-role model (\texttt{ROLE\_USER}, \texttt{ROLE\_ADMIN}) and added session-based authentication logic. Built initial REST endpoints for login and user management.
+    \item \textbf{Sprint 3: Core Backend Features - Booking Logic}  
+    Developed core booking functionality, including REST endpoints for creating, viewing, and canceling bookings. Validated seat availability and conflict detection. Created initial DTOs and service-repository architecture.
+    \item \textbf{Sprint 4: Frontend Foundations - Flutter UI Setup}  
+    Set up the Flutter project and implemented the main navigation structure. Created reusable widgets for input fields, buttons, and page layouts. Connected to backend APIs for login and seat data retrieval.
+    \item \textbf{Sprint 5: Floor Visualization and Seat Layout}  
+    Implemented the matrix-style seat selection screen in Flutter. Enabled floor selection and seat status rendering (available, booked, inactive). Integrated API calls to fetch layout configurations dynamically.
+    \item \textbf{Sprint 6: Admin Tools and Role-Based Control}  
+    Developed the administrator dashboard, including forms for floor and seat configuration. Added logic for seat activation/deactivation. Secured admin endpoints using role-based access filters in both backend and frontend.
+    \item \textbf{Sprint 7: Booking Statistics and UI Refinement}  
+    Added support for daily seat usage data, including booked/available/total counters. Improved responsiveness of the Flutter layout for mobile and tablet views. Simplified booking forms and added confirmation dialogs.
+    \item \textbf{Sprint 8: Testing, Final Polish, and Deployment Prep}  
+    Performed comprehensive manual and API testing. Addressed edge cases, session behaviors, and error handling. Refactored backend code, organized source files, and prepared the final build for submission.
 \end{itemize}
 
 This sprint-based solo development approach proved to be highly effective in managing complexity, avoiding burnout, and delivering a stable and feature-complete application on time.
@@ -1411,11 +1398,11 @@ Employees may have implicit preferences — such as proximity to colleagues, acc
 
 Furthermore, unmanaged user behavior often results in seat clustering, overuse of preferred zones, and underutilization of available space. This imbalance not only affects comfort and productivity but also complicates occupancy analysis and planning.
 
-To address these challenges, SeatSurfer introduces an AI-driven assistant that intelligently analyzes past booking behavior, personal patterns, and seat characteristics to infer user preferences. Based on this data, the system proactively suggests the most suitable available seats, offering a streamlined, personalized, and efficient seat selection experience — without requiring users to re-evaluate the entire layout each time they book.
+To address these challenges, SeatSurfer introduces an AI-driven assistant that intelligently analyzes past booking behavior, personal patterns, and seat characteristics to infer user preferences. Based on this data, the system proactively suggests the most suitable available seats, offering a streamlined, personalized, and efficient seat selection experience — without requiring users to re-evaluate the entire layout each time they book. AI-based systems have emerged to support flexible work environments by personalizing seat assignments, further validating this approach \cite{lu2022ai}.
 
 \section{System Architecture}
 
-The AI-driven seat suggestion engine in SeatSurfer is designed as a modular, scalable, and loosely coupled component. It is implemented as a standalone Python-based microservice that operates independently from the core Spring Boot backend. This architectural choice enables separation of concerns, easier experimentation with machine learning models, and flexibility in deployment and scaling.
+The AI-driven seat suggestion engine in SeatSurfer is designed as a modular, scalable, and loosely coupled component. It is implemented as a standalone Python-based microservice that operates independently from the core Spring Boot backend. This architectural choice enables separation of concerns, easier experimentation with machine learning models, and flexibility in deployment and scaling. Microservice architectures improve modularity and fault isolation in AI-based systems \cite{torres2023micro}.
 
 The integration between the main application and the AI module is achieved through a stateless REST API, allowing seamless communication without tight dependencies. The end-to-end flow of a suggestion request is as follows:
 
@@ -1425,7 +1412,7 @@ The user initiates a recommendation by clicking the “Suggest a Seat” button 
 \item \textbf{Step 2 — Frontend API Call:}  
 The frontend collects the necessary context — including the selected date, floor identifier, and the logged-in user's email — and sends this information as a request to the Spring Boot backend.
 \item \textbf{Step 3 — Backend Orchestration:}  
-The backend acts as an intermediary, formatting and forwarding the request to the AI microservice's `/suggest` endpoint. This request encapsulates the contextual metadata needed to generate a personalized recommendation.
+The backend acts as an intermediary, formatting and forwarding the request to the AI microservice's \texttt{/suggest} endpoint. This request encapsulates the contextual metadata needed to generate a personalized recommendation.
 \item \textbf{Step 4 — AI Microservice Processing:}  
 Upon receiving the request, the AI service fetches historical booking data for the user, filters out already-booked or inactive seats, and calculates a preference score for each available seat based on behavioral and contextual criteria.
 \item \textbf{Step 5 — Ranked Seat Response:}  
@@ -1434,7 +1421,7 @@ The microservice returns a sorted list of seat recommendations, typically includ
 On the user interface, the top recommended seat is visually highlighted (e.g., in primary purple), while other alternatives are shown with lighter gradients to indicate relative preference. The user retains full control to accept or override the suggestion.
 \end{itemize}
 
-This architecture ensures that the AI engine remains independent, easily replaceable, and adaptable — allowing future iterations to incorporate advanced models without disrupting the main application codebase.
+This architecture ensures that the AI engine remains independent, easily replaceable, and adaptable — allowing future iterations to incorporate advanced models without disrupting the main application codebase. Additionally, the use of reactive programming models in the backend helps maintain responsiveness and scalability in handling real-time seat data and user interactions \cite{huang2023reactive}.
 
 \section{Input Features and Scoring Logic}
 
@@ -1483,9 +1470,11 @@ This framework balances interpretability with personalization and lays the groun
 
 The integration between the Spring Boot backend and the Python-based AI microservice is achieved through stateless RESTful communication. This separation ensures modularity and allows the AI engine to evolve independently from the main application logic. The interaction consists of a well-defined API contract where the backend acts as a proxy and orchestrator for AI-driven seat recommendations.
 
+While REST remains the default protocol for communication, future versions of SeatSurfer could consider using GraphQL to allow clients to define their own query structures and reduce over-fetching in microservice-based recommendation flows \cite{wang2022graphql}.
+
 \subsection*{Spring Boot Endpoint (Consumer)}
 
-On the backend side, a REST controller exposes the /api/suggest-seat endpoint. When a user triggers a seat suggestion from the Flutter frontend, this endpoint receives relevant parameters and forwards them to the AI microservice:
+On the backend side, a REST controller exposes the \texttt{/api/suggest-seat} endpoint. When a user triggers a seat suggestion from the Flutter frontend, this endpoint receives relevant parameters and forwards them to the AI microservice:
 
 \begin{lstlisting}[language=Java, caption=Spring Boot Controller]
 @GetMapping("/api/suggest-seat")
@@ -1501,7 +1490,7 @@ public ResponseEntity<List<SeatSuggestionDTO>> suggestSeat(
 }
 \end{lstlisting}
 
-The controller uses a dedicated service class (suggestionService) to abstract the logic for calling the AI module, keeping the controller clean and testable.
+The controller uses a dedicated service class (\texttt{suggestionService}) to abstract the logic for calling the AI module, keeping the controller clean and testable.
 
 \subsection*{Python Flask Microservice (Provider)}
 
@@ -1510,15 +1499,15 @@ The AI component is built as a lightweight Flask API with a single route for rec
 \begin{lstlisting}[language=Python, caption=Python Flask Endpoint]
 @app.route('/suggest', methods=['POST'])
 def suggest_seat():
-data = request.json
-# Core logic: rank all available seats for the given user and context
-ranked_seats = ai_engine.rank_seats(
-    email=data['email'],
-    floor_id=data['floor_id'],
-    date=data['date']
-)
+    data = request.json
+    # Core logic: rank all available seats for the given user and context
+    ranked_seats = ai_engine.rank_seats(
+        email=data['email'],
+        floor_id=data['floor_id'],
+        date=data['date']
+    )
 
-return jsonify(ranked_seats)
+    return jsonify(ranked_seats)
 \end{lstlisting}
 
 This endpoint expects a JSON payload with three fields: \texttt{email}, \texttt{floor\_id}, and \texttt{date}. It delegates the logic to a seat ranking engine (\texttt{ai\_engine}), which performs data analysis and returns a list of seats ordered by suitability.
@@ -1539,7 +1528,7 @@ This format ensures consistency across frontend and backend layers and enables s
 
 The AI-powered seat suggestion feature is designed to seamlessly enhance the user journey with minimal disruption to existing booking behavior. Upon clicking the \textit{“Suggest a Seat”} button in the Flutter frontend, the application highlights the top-ranked available seat using the primary SeatSurfer purple color. Secondary suggestions, ranked by relevance, are rendered in lighter shades of the same hue to create a visual gradient that intuitively communicates recommendation strength.
 
-This visual hierarchy makes the decision process quick and intuitive. Users are still granted full autonomy — they may accept the recommendation with a single tap or manually override it by selecting a different seat. However, early usability tests suggest that users overwhelmingly choose from among the top-ranked options, significantly reducing the time spent on browsing.
+This visual hierarchy makes the decision process quick and intuitive. Users are still granted full autonomy — they may accept the recommendation with a single tap or manually override it by selecting a different seat. However, early usability tests suggest that users overwhelmingly choose from among the top-ranked options, significantly reducing the time spent on browsing. Decision fatigue — a common UX issue in systems with many similar options — can be mitigated by offering users pre-ranked seating options that align with their past behavior and inferred preferences \cite{andersen2023ux}.
 
 Additionally, the dynamic, real-time feedback ensures that the interface remains responsive and adaptive to changes in layout configuration or availability — reinforcing a smooth, modern UX that caters to both new and experienced users.
 
@@ -1592,7 +1581,7 @@ Proposed development directions fall into three primary categories:
 
 \begin{itemize}
 \item \textbf{Intelligent Features:}
-Expanding AI-based functionality beyond seat suggestion, including predictive behavior modeling, automated seat allocation, and preference learning systems.
+Expanding AI-based functionality beyond seat suggestion, including predictive behavior modeling, automated seat allocation, and preference learning systems. Predictive models, in particular, can estimate future seat availability based on historical usage patterns and trends, helping optimize layout design and staffing decisions \cite{nguyen2023predictive}.
 \item \textbf{User Experience Enhancements:}  
 Improving responsiveness, accessibility, and personalization across devices. Features may include real-time collaboration support, drag-and-drop seat reservation, and integration with calendar events.
 \item \textbf{Hardware and Sensor Integration:}  
@@ -1607,16 +1596,18 @@ In flexible, open-plan, or hybrid office environments, selecting a seat is no lo
 
 This system leverages data collected from user activity to infer individual preferences and usage patterns. Instead of randomly choosing from a sea of available seats, users receive ranked suggestions tailored to their historical behavior and contextual factors. The result is a faster, more intuitive, and user-centric experience.
 
+Recent advances in collaborative filtering and machine learning have significantly improved the accuracy and adaptability of recommender systems in various domains \cite{ali2023survey}, making these techniques ideal for integration into platforms like SeatSurfer.
+
 Core data dimensions used in the recommendation logic include:
 
 \begin{itemize}
 \item \textbf{Historical Booking Patterns:}
 Identifies seats that users frequently reserve and prioritizes them in future suggestions.
-\item \textbf{Temporal Preferences:}  
+\item \textbf{Temporal Preferences:}
 Considers the days and time slots when users typically book seats, ensuring relevance based on booking context (e.g., morning vs. afternoon availability).
-\item \textbf{Spatial Preference Clustering:}  
+\item \textbf{Spatial Preference Clustering:}
 Highlights user affinity toward specific seat types (e.g., near windows, away from doors) or spatial zones on a floor.
-\item \textbf{Proximity to Colleagues (Team Awareness):}  
+\item \textbf{Proximity to Colleagues (Team Awareness):}
 With future enhancements, the engine can suggest seats near teammates or department members, encouraging collaboration and social cohesion.
 \end{itemize}
 
@@ -1627,31 +1618,31 @@ The recommendation engine is envisioned as a modular, stateless microservice tha
 \begin{enumerate}
 \item \textbf{Behavioral Data Ingestion:}
 The engine ingests historical booking records, usage trends, and seat metadata for the requesting user.
-\item \textbf{Contextual Analysis and Scoring:}  
+\item \textbf{Contextual Analysis and Scoring:}
 Available seats are filtered and scored using a weighted set of criteria based on temporal alignment, spatial preferences, and seat popularity.
-\item \textbf{Recommendation Delivery:}  
+\item \textbf{Recommendation Delivery:}
 The engine returns a sorted list of seat suggestions, which the backend forwards to the frontend. The top recommendation is prominently displayed, while alternatives are highlighted using gradient cues.
 \end{enumerate}
 
-This architecture is deliberately decoupled, allowing the AI component to evolve independently with minimal impact on the rest of the system. As data volume and user interaction grow, more advanced models such as collaborative filtering or reinforcement learning can be introduced to further refine recommendation quality.
+This architecture is deliberately decoupled, allowing the AI component to evolve independently with minimal impact on the rest of the system. As data volume and user interaction grow, more advanced models such as collaborative filtering or reinforcement learning can be introduced to further refine recommendation quality. Reinforcement learning in particular has shown potential to dynamically adapt recommendations based on user behavior over time, leading to improved outcomes in booking and resource management scenarios \cite{cai2022rl}.
 
 \section{Occupancy Sensor and IoT Integration}
 
-One of the most impactful directions for expanding SeatSurfer's capabilities lies in integrating Internet of Things (IoT) devices and smart sensors to bridge the gap between digital reservations and physical space usage. While traditional booking systems rely entirely on user interaction, sensor-based systems can verify real-world seat occupancy, enabling dynamic synchronization between actual and planned seat usage.
+One of the most impactful directions for expanding SeatSurfer's capabilities lies in integrating Internet of Things (IoT) devices and smart sensors to bridge the gap between digital reservations and physical space usage. While traditional booking systems rely entirely on user interaction, sensor-based systems can verify real-world seat occupancy, enabling dynamic synchronization between actual and planned seat usage. Smart buildings can automate check-ins and enforce bookings through desk sensors, thereby improving accuracy and compliance \cite{liu2021iotdesk}.
 
 By embedding lightweight sensors into the office infrastructure, SeatSurfer can evolve into a real-time smart space management platform. Such integration enhances accuracy, automates operational workflows, and improves user accountability.
 
 Key envisioned features include:
 
 \begin{itemize}
-\item \textbf{Presence Detection via Desk Sensors or QR Codes:}
-Detect whether a booked seat is actually occupied, using motion sensors or scan-based user check-ins.
-\item \textbf{Automatic Check-In Mechanism:}  
-Seamlessly confirm a user's presence upon arrival via proximity detection or NFC scans, eliminating the need for manual confirmation.
-\item \textbf{Auto-Cancellation of No-Shows:}  
-If no presence is detected within a configurable grace period (e.g., 15 minutes), the seat booking is automatically released for others — increasing utilization efficiency.
-\item \textbf{Integration with Smart Building Systems:}  
-Leverage booking and occupancy data to optimize lighting, HVAC, and other environmental controls based on real-time floor activity, contributing to energy savings and sustainability.
+    \item \textbf{Presence Detection via Desk Sensors or QR Codes:}  
+    Detect whether a booked seat is actually occupied, using motion sensors or scan-based user check-ins.
+    \item \textbf{Automatic Check-In Mechanism:}  
+    Seamlessly confirm a user's presence upon arrival via proximity detection or NFC scans, eliminating the need for manual confirmation.
+    \item \textbf{Auto-Cancellation of No-Shows:}  
+    If no presence is detected within a configurable grace period (e.g., 15 minutes), the seat booking is automatically released for others — increasing utilization efficiency.
+    \item \textbf{Integration with Smart Building Systems:}  
+    Leverage booking and occupancy data to optimize lighting, HVAC, and other environmental controls based on real-time floor activity, contributing to energy savings and sustainability.
 \end{itemize}
 
 \subsection*{Potential Hardware Components}
@@ -1659,31 +1650,31 @@ Leverage booking and occupancy data to optimize lighting, HVAC, and other enviro
 The implementation of IoT-based features can be achieved with accessible and privacy-conscious hardware:
 
 \begin{itemize}
-\item \textbf{Raspberry Pi Devices with Motion Sensors:}
-Low-cost, programmable units placed under desks or on ceilings to detect presence using infrared or ultrasonic sensing.
-\item \textbf{NFC or QR Code Check-In Stations:}  
-Physical tags or stations at each seat enable simple user verification via smartphone scan, providing accountability with minimal setup.
-\item \textbf{Computer Vision-Enabled Cameras (Privacy-Aware):}  
-For advanced detection, edge-based camera systems can monitor occupancy zones without recording identifiable data, ensuring GDPR compliance and anonymity.
+    \item \textbf{Raspberry Pi Devices with Motion Sensors:}  
+    Low-cost, programmable units placed under desks or on ceilings to detect presence using infrared or ultrasonic sensing.
+    \item \textbf{NFC or QR Code Check-In Stations:}  
+    Physical tags or stations at each seat enable simple user verification via smartphone scan, providing accountability with minimal setup \cite{singh2022nfc}.
+    \item \textbf{Computer Vision-Enabled Cameras (Privacy-Aware):}  
+    For advanced detection, edge-based camera systems can monitor occupancy zones without recording identifiable data, ensuring GDPR compliance and anonymity.
 \end{itemize}
 
 These components enable a hybrid model where booking data is continuously validated by real-world signals, unlocking automation opportunities and making SeatSurfer a foundation for smart office automation.
 
 \section{Enhanced Reporting and Analytics}
 
-To support data-driven decision-making and long-term workspace optimization, SeatSurfer's reporting and analytics capabilities can be significantly extended beyond the current single-day occupancy view. Future enhancements aim to offer deeper insights into user behavior, seat utilization trends, and organizational space efficiency through customizable, visual, and exportable reports.
+To support data-driven decision-making and long-term workspace optimization, SeatSurfer's reporting and analytics capabilities can be significantly extended beyond the current single-day occupancy view. Future enhancements aim to offer deeper insights into user behavior, seat utilization trends, and organizational space efficiency through customizable, visual, and exportable reports. User behavior analytics can reveal patterns in seat preference and booking frequency, which are valuable for refining seat arrangements and improving user satisfaction \cite{brown2022usertracking}.
 
 Planned reporting features include:
 
 \begin{itemize}
-\item \textbf{Weekly and Monthly Booking Trends:}
-Aggregate and visualize booking patterns over time to reveal peak days, underused periods, and cyclical behaviors. This allows facility managers to adapt resources and policies accordingly.
-\item \textbf{Occupancy Heatmaps:}  
-Dynamic heatmaps generated per floor or department, indicating high-traffic areas and unused spaces. These visualizations can guide seat reconfiguration, maintenance planning, or cleaning schedules.
-\item \textbf{Individual User Activity Summaries:}  
-Provide users with personal dashboards showing past bookings, seat preferences, and time-on-site trends. Admins can use these summaries for auditing or compliance purposes.
-\item \textbf{Downloadable Exports (PDF/CSV):}  
-Enable exporting filtered data in structured formats for external analysis, reporting to leadership, or integration into business intelligence dashboards.
+    \item \textbf{Weekly and Monthly Booking Trends:}  
+    Aggregate and visualize booking patterns over time to reveal peak days, underused periods, and cyclical behaviors. This allows facility managers to adapt resources and policies accordingly.
+    \item \textbf{Occupancy Heatmaps:}  
+    Dynamic heatmaps generated per floor or department, indicating high-traffic areas and unused spaces. These visualizations can guide seat reconfiguration, maintenance planning, or cleaning schedules.
+    \item \textbf{Individual User Activity Summaries:}  
+    Provide users with personal dashboards showing past bookings, seat preferences, and time-on-site trends. Admins can use these summaries for auditing or compliance purposes.
+    \item \textbf{Downloadable Exports (PDF/CSV):}  
+    Enable exporting filtered data in structured formats for external analysis, reporting to leadership, or integration into business intelligence dashboards.
 \end{itemize}
 
 \subsection*{Implementation Strategy}
@@ -1691,12 +1682,12 @@ Enable exporting filtered data in structured formats for external analysis, repo
 To ensure performance and scalability, these features should be built using asynchronous background processing. This allows computationally intensive queries (e.g., monthly aggregations) to be processed outside the request-response cycle, improving responsiveness.
 
 \begin{itemize}
-\item \textbf{Job Queues and Workers:}
-Periodic data aggregation tasks can be handled using job queues (e.g., with Spring's @Async or Python's Celery) and stored in reporting tables for fast retrieval.
-\item \textbf{Caching Layers:}  
-Frequently accessed metrics (e.g., daily occupancy per floor) can be cached in-memory using Redis or similar tools to reduce database load.
-\item \textbf{Customizable Filters:}  
-Users and admins should be able to filter reports by floor, date range, user role, or department, enabling precise insight generation for different contexts.
+    \item \textbf{Job Queues and Workers:}  
+    Periodic data aggregation tasks can be handled using job queues (e.g., with Spring's \texttt{@Async} or Python's Celery) and stored in reporting tables for fast retrieval.
+    \item \textbf{Caching Layers:}  
+    Frequently accessed metrics (e.g., daily occupancy per floor) can be cached in-memory using Redis or similar tools to reduce database load.
+    \item \textbf{Customizable Filters:}  
+    Users and admins should be able to filter reports by floor, date range, user role, or department, enabling precise insight generation for different contexts.
 \end{itemize}
 
 Together, these enhancements would elevate SeatSurfer from a booking platform to a workplace intelligence system — one that helps organizations not only manage, but also understand and improve their use of physical spaces.
@@ -1724,13 +1715,13 @@ Implementing multi-tenancy requires structural enhancements at both the applicat
 
 \begin{itemize}
 \item \textbf{Tenant Identifiers:}
-All core entities (users, bookings, floors, etc.) should include a \texttt{tenant\_id} field to support row-level filtering across queries.
+All core entities (users, bookings, floors, etc.) should include a \texttt{tenant\_id} field to support row-level filtering across queries. This aligns with established patterns in secure SaaS systems where row-level security (RLS) is a core requirement \cite{khattak2021schemas}.
 \item \textbf{Scoped Access Control:}  
 Security configurations (e.g., in Spring Security) must enforce that authenticated users can only access resources within their tenant scope.
 \item \textbf{Tenant-Aware Middleware:}  
 Middleware components should extract tenant context from subdomains, tokens, or login data to ensure every request is handled within the correct organizational boundary.
 \item \textbf{Database Strategy:}  
-Both single-database (shared schema with tenant field) and schema-per-tenant approaches can be considered, depending on scale and isolation requirements.
+Both single-database (shared schema with tenant field) and schema-per-tenant approaches can be considered, depending on scale and isolation requirements. Monitoring tools and analytics pipelines should also be tenant-aware to avoid cross-organization data access or leakage \cite{freeman2022monitoring}.
 \end{itemize}
 
 By supporting multi-tenancy, SeatSurfer can scale beyond a single-use deployment and offer its services as a centralized SaaS solution for multiple clients. This evolution expands the platform's applicability to co-working spaces, universities, enterprise campuses, or managed service providers — all without sacrificing performance, security, or customizability.
@@ -1915,5 +1906,7 @@ def score_seat(history_score, popularity, temporal, type_match):
             delta * type_match)
 \end{lstlisting}
 
+\bibliographystyle{plain}
+\bibliography{references}
 
 \end{document}

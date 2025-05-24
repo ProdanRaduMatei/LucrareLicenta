@@ -363,6 +363,9 @@ INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT ./main.bbl
+INPUT ./main.bbl
+INPUT main.bbl
 INPUT main.aux
 INPUT ./main.out
 INPUT ./main.out
