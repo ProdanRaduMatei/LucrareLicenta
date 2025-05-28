@@ -35,16 +35,6 @@ Baeldung.
 \newblock {\em PostgreSQL 15 Documentation}, 2023.
 \newblock Accessed: 2025-05-19.
 
-\bibitem{santos2022uxpatterns}
-Mariana Santos and Ricardo Costa.
-\newblock Design patterns for enhancing accessibility in date and layout selection interfaces.
-\newblock {\em Journal of Human-Centered Software Design}, 18(2):101--114, 2022.
-
-\bibitem{garcia2021flutterperf}
-Miguel Garcia, Adriana López, and Wenbo Chen.
-\newblock Performance tuning techniques in flutter apps: A systematic review.
-\newblock {\em Mobile Software Engineering Review}, 8(2):45--58, 2021.
-
 \bibitem{davis2021datamodeling}
 Rachel Davis.
 \newblock Best practices in normalized data modeling.
@@ -85,6 +75,16 @@ L.~Zhang.
 \newblock Agile testing and sprint strategies for solo developers.
 \newblock {\em Journal of Agile Development and Practice}, 12(1):15--26, 2023.
 
+\bibitem{santos2022uxpatterns}
+Mariana Santos and Ricardo Costa.
+\newblock Design patterns for enhancing accessibility in date and layout selection interfaces.
+\newblock {\em Journal of Human-Centered Software Design}, 18(2):101--114, 2022.
+
+\bibitem{garcia2021flutterperf}
+Miguel Garcia, Adriana López, and Wenbo Chen.
+\newblock Performance tuning techniques in flutter apps: A systematic review.
+\newblock {\em Mobile Software Engineering Review}, 8(2):45--58, 2021.
+
 \bibitem{lu2022ai}
 Yuxin Lu and Kai Zhou.
 \newblock Ai-enhanced intelligent workplaces: Automation and optimization for hybrid work.
@@ -114,40 +114,5 @@ Lars Andersen and Miriam Voss.
 Linh Nguyen, Rohan Arora, and Suraj Mehta.
 \newblock Predictive modeling for office space utilization using historical booking data.
 \newblock {\em Journal of Smart Workspace Systems}, 5(2):91--104, 2023.
-
-\bibitem{ali2023survey}
-Ayesha Ali and Bilal Khan.
-\newblock A survey on collaborative filtering and deep learning approaches for recommendation systems.
-\newblock {\em Expert Systems with Applications}, 213:119123, 2023.
-
-\bibitem{cai2022rl}
-Wei Cai.
-\newblock Reinforcement learning for personalized recommendations.
-\newblock {\em Machine Learning Applications Journal}, 14(4):150--160, 2022.
-
-\bibitem{liu2021iotdesk}
-Yan Liu and Wei Cheng.
-\newblock Iot-enabled desk booking system for smart offices.
-\newblock {\em IEEE Internet of Things Journal}, 8(5):4012--4023, 2021.
-
-\bibitem{singh2022nfc}
-Arjun Singh and Isha Patel.
-\newblock Nfc and qr code based access management in co-working environments.
-\newblock {\em International Journal of Smart Sensor and Ad Hoc Networks}, 12(2):89--97, 2022.
-
-\bibitem{brown2022usertracking}
-Kevin Brown and Laura Martinez.
-\newblock User behavior tracking for smart workspace optimization.
-\newblock {\em Journal of Intelligent Environments}, 18(4):251--263, 2022.
-
-\bibitem{khattak2021schemas}
-Noman Khattak, Hussain Abbas, and Muhammad Usman.
-\newblock Schema design for multitenant saas applications with row-level security.
-\newblock {\em International Journal of Advanced Computer Science and Applications}, 12(3):351--358, 2021.
-
-\bibitem{freeman2022monitoring}
-Jason Freeman, Lingyu Zhang, and Soyeon Kim.
-\newblock Observability strategies for multi-tenant cloud systems.
-\newblock {\em IEEE Cloud Computing}, 9(2):36--45, 2022.
 
 \end{thebibliography}
