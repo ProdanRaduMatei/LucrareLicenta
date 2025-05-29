@@ -59,7 +59,7 @@
 \contentsline {subsection}{\numberline {3.2.5}REST API Integration}{56}{subsection.3.2.5}%
 \contentsline {subsection}{\numberline {3.2.6}User Experience}{57}{subsection.3.2.6}%
 \contentsline {subsection}{\numberline {3.2.7}Benefits and Impact}{57}{subsection.3.2.7}%
-\contentsline {chapter}{\numberline {4}Future Enhancements and Research Directions}{59}{chapter.4}%
+\contentsline {chapter}{\numberline {4}Conclusion and Future Enhancements}{59}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Overview}{59}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Conclusion}{59}{section.4.2}%
 \contentsline {chapter}{\numberline {A}Entity Class Example (Java)}{61}{appendix.A}%

@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1748428026.31866 "main.aux" "main.bbl" "main" 1748428075.28172 0
+["bibtex main"] 1748500153.46663 "main.aux" "main.bbl" "main" 1748500156.2472 0
   "./references.bib" 1748088201 11786 7366931f7fe528f10af8d8cefdb36980 ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "main.aux" 1748428074 16927 ce7d5f05afb0e71a1665fb251457c8a9 "pdflatex"
+  "main.aux" 1748500155 16918 f99eca2ea13f6e1d8ec930b7ffeeca6d "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1748428072.41009 "/Volumes/Samsung/LucrareLicenta/Lucrare/main.tex" "main.pdf" "main" 1748428075.28202 0
-  "/Volumes/Samsung/LucrareLicenta/Lucrare/main.tex" 1748428071 132526 d056b5b9d3293f0b00d270432877940b ""
+["pdflatex"] 1748500153.60572 "/Volumes/Samsung/LucrareLicenta/Lucrare/main.tex" "main.pdf" "main" 1748500156.24735 0
+  "/Volumes/Samsung/LucrareLicenta/Lucrare/main.tex" 1748500150 132517 662eb6279c44f59da5fbde7955b58896 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/tcbx1200.tfm" 1136768653 1536 c09172c8f235393e6235bb4758357c41 ""
@@ -195,11 +195,11 @@
   "images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 20.07.03.png" 1747674423 192409 412e7303881f17e5b6a075ef33a225fc ""
   "images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 20.08.52.png" 1747674533 234272 7a2281de8740d76d78214efb47598ba7 ""
   "images/login_screen.png" 1747673587 188672 88401d752ec529467041a0d712e61646 ""
-  "main.aux" 1748428074 16927 ce7d5f05afb0e71a1665fb251457c8a9 "pdflatex"
-  "main.bbl" 1748428026 4970 864cf6cec1a5d18e1345af261e5a8f2a "bibtex main"
-  "main.out" 1748428074 13914 5356aa352c91a0883f5f6539d33f31b9 "pdflatex"
-  "main.tex" 1748428071 132526 d056b5b9d3293f0b00d270432877940b ""
-  "main.toc" 1748428074 6508 1437610053b2cdb263ec1c43e949e839 "pdflatex"
+  "main.aux" 1748500155 16918 f99eca2ea13f6e1d8ec930b7ffeeca6d "pdflatex"
+  "main.bbl" 1748500153 4970 864cf6cec1a5d18e1345af261e5a8f2a "bibtex main"
+  "main.out" 1748500155 13866 44f90c93bc5bb5a3487752ceae8b972e "pdflatex"
+  "main.tex" 1748500150 132517 662eb6279c44f59da5fbde7955b58896 ""
+  "main.toc" 1748500155 6499 50d3639f95ae9a237bd0d10a80695b48 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
