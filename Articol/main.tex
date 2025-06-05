@@ -85,7 +85,7 @@ In summary, SeatSurfer's architecture builds upon these prior works by unifying 
 
 SeatSurfer is built as a full-stack, modular platform designed to support hybrid workplace dynamics. Its architecture comprises a Flutter-based frontend, a Spring Boot REST API backend, and a Python-based microservice responsible for AI-driven seat suggestions. PostgreSQL is used as the primary relational database for its performance, indexing capabilities, and support for complex queries.
 
-Each layer is independently deployable and communicates via well-defined API contracts. This separation allows the system to scale and evolve individual components (e.g., the AI module) without affecting overall functionality.
+Each layer is independently deployable and communicates via well-defined API contracts. This separation allows the system to scale and evolve individual components (e.g., the AI module) without affecting overall functionality. An overview of this architecture is illustrated in Figure~\ref{fig:architecture}, showing the relationships between modules and the flow of data during booking and recommendation operations.
 
 \begin{figure}[!ht]
 \centering
@@ -177,7 +177,7 @@ These findings align with contemporary research in human-centered AI, which emph
 
 \section{Conclusion}
 
-This paper presented \textbf{SeatSurfer}, a full-stack, AI-enhanced platform designed to meet the evolving needs of hybrid workplace management. By integrating a modular microservice architecture, a Flutter-based cross-platform frontend, and a machine learning recommendation engine, SeatSurfer addresses the key operational challenges of modern work environments—namely fluctuating occupancy, decentralized user behavior, and inefficient seat utilization.
+This paper presents \textbf{SeatSurfer}, a full-stack, AI-enhanced platform designed to meet the evolving needs of hybrid workplace management. By integrating a modular microservice architecture, a Flutter-based cross-platform frontend, and a machine learning recommendation engine, SeatSurfer addresses the key operational challenges of modern work environments—namely fluctuating occupancy, decentralized user behavior, and inefficient seat utilization.
 
 The system's AI-driven seat suggestions led to measurable gains in booking speed, spatial distribution, and user satisfaction. These benefits demonstrate the viability of intelligent assistance in reducing decision fatigue, promoting equitable space access, and optimizing shared resource use. Moreover, SeatSurfer's technical architecture—centered on RESTful API interactions, tenant-aware database design, and asynchronous service orchestration—provides a scalable foundation adaptable to enterprise-scale deployment or academic experimentation.
 

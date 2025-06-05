@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1749021866.28729 "main.aux" "main.bbl" "main" 1749021878.7199 0
+["bibtex main"] 1749021866.28729 "main.aux" "main.bbl" "main" 1749133642.65554 0
   "./references.bib" 1749021283 7239 5c346da8e5cadc4998c6ae8ca2475957 ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1440712899 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "main.aux" 1749021878 4261 016353597ade04f942156860999a4baf "pdflatex"
+  "main.aux" 1749133642 4261 016353597ade04f942156860999a4baf "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1749021877.89865 "/Volumes/Samsung/LucrareLicenta/Articol/main.tex" "main.pdf" "main" 1749021878.72006 0
-  "/Volumes/Samsung/LucrareLicenta/Articol/main.tex" 1749021877 22871 6572107147e0165a696012f9701ebc11 ""
+["pdflatex"] 1749133641.80445 "/Volumes/Samsung/LucrareLicenta/Articol/main.tex" "main.pdf" "main" 1749133642.65568 0
+  "/Volumes/Samsung/LucrareLicenta/Articol/main.tex" 1749133641 23061 c23e186b0d86c3c3232f31a6a5b61387 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1136768653 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -103,10 +103,10 @@
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1730544473 8221427 a40d204f76f4c7ddd3c60d0102a020fe ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
   "architecture_diagram.png" 1748870983 1676863 c3e1552e9ad0ecc76fab593f5af41b68 ""
-  "main.aux" 1749021878 4261 016353597ade04f942156860999a4baf "pdflatex"
+  "main.aux" 1749133642 4261 016353597ade04f942156860999a4baf "pdflatex"
   "main.bbl" 1749021866 6076 a195d3c3b2a9e752c2f92f3c6df2258d "bibtex main"
-  "main.out" 1749021878 2732 622619e6827942e4052428235436bde8 "pdflatex"
-  "main.tex" 1749021877 22871 6572107147e0165a696012f9701ebc11 ""
+  "main.out" 1749133642 2732 622619e6827942e4052428235436bde8 "pdflatex"
+  "main.tex" 1749133641 23061 c23e186b0d86c3c3232f31a6a5b61387 ""
   (generated)
   "main.aux"
   "main.log"
