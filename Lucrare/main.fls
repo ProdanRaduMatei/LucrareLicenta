@@ -324,6 +324,11 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT ./images/trello.png
+INPUT ./images/trello.png
+INPUT ./images/trello.png
+INPUT ./images/trello.png
+INPUT ./images/trello.png
 INPUT ./images/login_screen.png
 INPUT ./images/login_screen.png
 INPUT ./images/login_screen.png

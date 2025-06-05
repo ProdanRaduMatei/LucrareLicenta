@@ -79,6 +79,9 @@ This work is the result of my own activity. I have neither given nor received
 unauthorised assistance on this work.
 
 \vspace{0.5cm}
+
+% \noindent\rule{6cm}{0.4pt} \\
+% \textbf{Prodan Radu-Matei}
 % \noindent \textbf{Keywords:} hybrid work, office management, seat reservation, database systems, Spring Boot, Flutter, workplace optimization
 
 % ===== TOC =====
@@ -233,7 +236,7 @@ The SeatSurfer platform was built using a carefully selected, modular technology
 
     \item \textbf{Database:} PostgreSQL is a powerful, enterprise-grade relational database system that offers full SQL compliance, ACID transactions, and advanced data modeling capabilities. It was selected for SeatSurfer due to its performance with complex relational queries, support for constraints and foreign keys, and ability to handle normalized schemas efficiently. The schema includes interconnected entities such as users, floors, seats, and bookings, all maintained with referential integrity. PostgreSQL also supports indexing strategies that optimize lookup speed for real-time seat availability and conflict detection during booking operations.
 
-    \item \textbf{Authentication:} \textit{Spring Security} — This framework integrates seamlessly with Spring Boot to provide comprehensive authentication and authorization capabilities. It enforces access control via role-based permissions (e.g., USER vs. ADMIN), supports form-based and token-based login methods, and protects endpoints against unauthorized access. In SeatSurfer, user credentials are securely stored using BCrypt hashing, and all protected operations (such as floor configuration or booking deletion) are guarded by endpoint-level access rules. This guarantees that users can only access resources appropriate to their assigned roles.
+    \item \textbf{Authentication:} Spring Security framework integrates with Spring Boot to provide robust authentication and authorization mechanisms. It enforces access control using role-based permissions (e.g., \texttt{USER} and \texttt{ADMIN}) and supports stateless authentication via JWT tokens. In SeatSurfer, user passwords are securely stored using BCrypt hashing, and sensitive endpoints—such as those handling booking deletion or floor configuration—are protected through method-level or route-level security annotations. This ensures that users only perform actions permitted by their roles.
 
     \item \textbf{Other Tools:}
     \begin{itemize}
@@ -1024,7 +1027,7 @@ Although SeatSurfer was developed independently, a full suite of professional to
 \item \textbf{GitHub:}
 Used for version control, issue tracking, and maintaining a clean and traceable commit history. Features such as branches, commits, and Git tags were leveraged to manage sprint progress and milestone releases.
 \item \textbf{Trello:}  
-Served as a personal Kanban board for sprint planning. The board included columns such as “Backlog,” “To Do,” “In Progress,” and “Done” to track task completion and maintain a clear overview of project priorities.
+Served as a personal Kanban board for sprint planning. The board included columns such as “To Do”, “In Progress”, and “Done” to track task completion and maintain a clear overview of project priorities.
 \item \textbf{Postman:}  
 Used extensively for manual API testing during development. It helped validate authentication flows, booking logic, and error handling for various edge cases and user roles.
 \item \textbf{Visual Studio Code and IntelliJ IDEA:}  
@@ -1033,12 +1036,12 @@ Both editors were used in parallel — VS Code for Flutter frontend development 
 
 \subsection*{Trello Snapshot Example}
 
-% \begin{figure}[H]
-%     \centering
-%     % \includegraphics[width=0.8\textwidth]{images/trello_board.png}
-%     \caption{Trello Sprint Board Snapshot}
-%     \label{fig:trello}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/trello.png}
+    \caption{Trello Sprint Board Snapshot}
+    \label{fig:trello}
+\end{figure}
 
 \subsection{Challenges and Lessons Learned}
 
@@ -1523,9 +1526,10 @@ Collectively, these benefits position the AI engine not just as a convenience fe
 \newpage
 
 % ===== CHAPTER 10 =====
-\chapter{Conclusion and Future Enhancements}
+\chapter*{Conclusion and Future Enhancements}
+\addcontentsline{toc}{chapter}{Conclusion and Future Enhancements}
 
-\section{Overview}
+\section*{Overview}
 
 SeatSurfer already provides solid core features—seat booking, access control, and admin configuration. However, its architecture was deliberately designed for long-term extensibility, allowing new capabilities to be added incrementally.
 
@@ -1541,7 +1545,7 @@ These enhancements position SeatSurfer not just as a reservation tool, but as a 
 
 Here's a refined and reworded version of the Conclusion that maintains your message while changing the phrasing and structure for originality and variety:
 
-\section{Conclusion}
+\section*{Conclusion}
 
 SeatSurfer represents more than just a booking platform—it lays the groundwork for intelligent workspace management in the age of hybrid work. By embracing modular design, scalable architecture, and a focus on real-time data handling, the system responds effectively to the evolving needs of flexible office environments.
 
@@ -1554,8 +1558,9 @@ As workplace dynamics continue to shift, solutions like SeatSurfer will play a v
 \newpage
 
 \appendix
-
-\chapter{Entity Class Example (Java)}
+\chapter*{Appendices}
+\addcontentsline{toc}{chapter}{Appendices}
+\section*{Entity Class Example (Java)}
 \label{appendix:entity}
 
 \begin{lstlisting}[language=Java, caption=Seat Entity (Java), label=lst:seat-entity]
@@ -1578,7 +1583,7 @@ public class Seat {
 }
 \end{lstlisting}
 
-\chapter{REST Controller Sample}
+\section*{REST Controller Sample}
 \label{appendix:controller}
 
 \begin{lstlisting}[language=Java, caption=Booking Controller (Java), label=lst:booking-controller]
@@ -1601,7 +1606,7 @@ public class BookingController {
 }
 \end{lstlisting}
 
-\chapter{SeatSuggestionDTO Example (Java)}
+\section*{SeatSuggestionDTO Example (Java)}
 \label{appendix:seatdto}
 
 \begin{lstlisting}[language=Java, caption=SeatSuggestionDTO (Java), label=lst:seat-suggestion-dto]
@@ -1615,7 +1620,7 @@ public class SeatSuggestionDTO {
 }
 \end{lstlisting}
 
-\chapter{Python Microservice Endpoint}
+\section*{Python Microservice Endpoint}
 \label{appendix:microservice}
 
 \begin{lstlisting}[language=Python, caption=Seat Suggestion Endpoint (Flask), label=lst:python-endpoint]
@@ -1630,7 +1635,7 @@ def suggest_seat():
     return jsonify(ranked_seats)
 \end{lstlisting}
 
-\chapter{SQL Table Definitions}
+\section*{SQL Table Definitions}
 \label{appendix:sql}
 
 \begin{lstlisting}[language=SQL, caption=Database Schema, label=lst:sql-schema]
@@ -1662,7 +1667,7 @@ CREATE TABLE bookings (
 );
 \end{lstlisting}
 
-\chapter{Flutter Seat Widget Example}
+\section*{Flutter Seat Widget Example}
 \label{appendix:flutter}
 
 \begin{lstlisting}[language=Java, caption=Seat Booking Widget (Flutter), label=lst:flutter-ui]
@@ -1683,7 +1688,7 @@ Widget buildSeat(int row, int col) {
 }
 \end{lstlisting}
 
-\chapter{Scoring Function (Python)}
+\section*{Scoring Function (Python)}
 \label{appendix:scoring}
 
 \begin{lstlisting}[language=Python, caption=Seat Scoring Function (Python), label=lst:scoring-function]

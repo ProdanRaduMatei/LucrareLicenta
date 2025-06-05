@@ -59,13 +59,5 @@
 \contentsline {subsection}{\numberline {3.2.5}REST API Integration}{56}{subsection.3.2.5}%
 \contentsline {subsection}{\numberline {3.2.6}User Experience}{57}{subsection.3.2.6}%
 \contentsline {subsection}{\numberline {3.2.7}Benefits and Impact}{57}{subsection.3.2.7}%
-\contentsline {chapter}{\numberline {4}Conclusion and Future Enhancements}{59}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Overview}{59}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Conclusion}{59}{section.4.2}%
-\contentsline {chapter}{\numberline {A}Entity Class Example (Java)}{61}{appendix.A}%
-\contentsline {chapter}{\numberline {B}REST Controller Sample}{62}{appendix.B}%
-\contentsline {chapter}{\numberline {C}SeatSuggestionDTO Example (Java)}{63}{appendix.C}%
-\contentsline {chapter}{\numberline {D}Python Microservice Endpoint}{64}{appendix.D}%
-\contentsline {chapter}{\numberline {E}SQL Table Definitions}{65}{appendix.E}%
-\contentsline {chapter}{\numberline {F}Flutter Seat Widget Example}{66}{appendix.F}%
-\contentsline {chapter}{\numberline {G}Scoring Function (Python)}{67}{appendix.G}%
+\contentsline {chapter}{Conclusion and Future Enhancements}{59}{chapter*.8}%
+\contentsline {chapter}{Appendices}{61}{appendix*.9}%
