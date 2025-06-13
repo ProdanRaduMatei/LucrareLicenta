@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1749134945.43487 "main.aux" "main.bbl" "main" 1749135408.32191 0
+["bibtex main"] 1749798407.30894 "main.aux" "main.bbl" "main" 1749798410.14721 0
   "./references.bib" 1748088201 11786 7366931f7fe528f10af8d8cefdb36980 ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "main.aux" 1749135407 15460 03a1b1434797db0f157c354f1db8657d "pdflatex"
+  "main.aux" 1749798409 15460 975b947bd9e0c7c237af1460b11585b8 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1749135403.22039 "/Volumes/Samsung/LucrareLicenta/Lucrare/main.tex" "main.pdf" "main" 1749135408.32206 0
-  "/Volumes/Samsung/LucrareLicenta/Lucrare/main.tex" 1749135402 132636 82914dc36163e314cc9aa095f103b0ea ""
+["pdflatex"] 1749798407.42234 "/Volumes/Samsung/LucrareLicenta/Lucrare/main.tex" "main.pdf" "main" 1749798410.14736 0
+  "/Volumes/Samsung/LucrareLicenta/Lucrare/main.tex" 1749798409 133622 4b9bd8b9abaf8fa2aa890cdb84c7683d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/tcbx1200.tfm" 1136768653 1536 c09172c8f235393e6235bb4758357c41 ""
@@ -21,7 +21,7 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm" 1246382020 940 228d6584342e91276bf566bcf9716b83 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
-  "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm" 1136768653 1300 63a6111ee6274895728663cf4b4e7e81 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm" 1136768653 1344 8a0be4fe4d376203000810ad4dc81558 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmex10.tfm" 1136768653 992 662f679a0b3d2d53c1b94050fdaa3f50 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1136768653 1524 4414a8315f39513458b80dfc63bff03a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm" 1136768653 1512 f21f83efb36853c0b70002322c1ab3ad ""
@@ -39,11 +39,10 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm" 1136768653 772 9a936b7f5e2ff0557fce0f62822f0bbf ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1248133631 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1248133631 32080 340ef9bf63678554ee606688e7b5339d ""
-  "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb" 1248133631 32001 6aeea3afe875097b1eb0da29acd61e28 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb" 1248133631 32378 2b20eba6bb36c716382b6d96240eaa69 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1248133631 36741 fa121aac0049305630cf160b86157ee4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
-  "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1248133631 32362 179c33bbf43f19adbb3825bb4e36e57a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1248133631 36118 fad905eba93cff5bce1e185fe980a177 ""
@@ -196,11 +195,11 @@
   "images/Simulator Screenshot - iPhone 16 Pro Max - 2025-05-19 at 20.08.52.png" 1747674533 234272 7a2281de8740d76d78214efb47598ba7 ""
   "images/login_screen.png" 1747673587 188672 88401d752ec529467041a0d712e61646 ""
   "images/trello.png" 1749134908 87198 96db19de246eb3d47cbf3d193c4de601 ""
-  "main.aux" 1749135407 15460 03a1b1434797db0f157c354f1db8657d "pdflatex"
-  "main.bbl" 1749134945 4970 864cf6cec1a5d18e1345af261e5a8f2a "bibtex main"
-  "main.out" 1749135407 12472 b9690c641e808014319541656d969ce9 "pdflatex"
-  "main.tex" 1749135402 132636 82914dc36163e314cc9aa095f103b0ea ""
-  "main.toc" 1749135407 5811 188bbb607ac37de8ce0ef0d92fbb7bc1 "pdflatex"
+  "main.aux" 1749798409 15460 975b947bd9e0c7c237af1460b11585b8 "pdflatex"
+  "main.bbl" 1749798407 4970 864cf6cec1a5d18e1345af261e5a8f2a "bibtex main"
+  "main.out" 1749798409 12472 b9690c641e808014319541656d969ce9 "pdflatex"
+  "main.tex" 1749798409 133622 4b9bd8b9abaf8fa2aa890cdb84c7683d ""
+  "main.toc" 1749798409 5811 188bbb607ac37de8ce0ef0d92fbb7bc1 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
