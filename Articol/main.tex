@@ -9,6 +9,7 @@
 
 \author{
     \IEEEauthorblockN{Radu-Matei Prodan }
+    
     \IEEEauthorblockA{
         \textit{Faculty of Mathematics and Computer Science} \\
         \textit{Babeș-Bolyai University}\\
@@ -22,7 +23,10 @@
 \maketitle
 
 \begin{abstract}
-The rise of hybrid work models has fundamentally transformed how organizations manage physical office spaces, creating the need for intelligent, flexible, and user-centric booking systems. This paper introduces \textit{SeatSurfer}, a full-stack, AI-powered platform for real-time seat reservation and workplace optimization. Built using a modular architecture combining Spring Boot (backend) and Flutter (frontend), SeatSurfer integrates a machine learning recommendation engine that analyzes historical booking patterns, temporal preferences, and spatial constraints to suggest personalized seat assignments. The system supports multi-tenant deployments, role-based access control, and responsive interfaces for both users and administrators. Through architectural analysis and simulation-based evaluation, we demonstrate that AI-driven seat recommendations significantly reduce booking friction, enhance user satisfaction, and promote balanced seat utilization. SeatSurfer exemplifies how intelligent software systems can improve operational efficiency and user experience in dynamic, post-pandemic work environments.
+The rise of hybrid work models has fundamentally reshaped how organizations allocate and manage physical office space. Traditional static desk assignments no longer suit dynamic, flexible work schedules, prompting the need for intelligent, user-centric booking systems.
+This paper introduces \textit{SeatSurfer}, a full-stack platform designed for real-time seat reservation and workplace optimization. Developed with a modular architecture using Spring Boot (backend) and Flutter (frontend), SeatSurfer integrates a machine learning engine that analyzes booking history, temporal patterns, and spatial constraints to deliver personalized seat suggestions.
+The system features multi-tenant support, role-based access control, and responsive interfaces tailored for both users and administrators. Through a combination of architectural analysis and simulation-based evaluation, we demonstrate that AI-driven recommendations reduce booking friction, improve user satisfaction, and enhance seat distribution across layouts.
+SeatSurfer serves as a proof-of-concept for how intelligent, modular platforms can increase both operational efficiency and user experience in modern hybrid work environments.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -49,7 +53,7 @@ To bridge this gap, we present \textbf{SeatSurfer}—an AI-enhanced, full-stack 
 
 SeatSurfer not only solves immediate space booking challenges, but also serves as a foundational platform for long-term research and innovation in smart office systems. It offers modular extension points for integration with IoT sensors, context-aware analytics, sustainability optimization, and adaptive policy enforcement. Its architecture is designed to evolve from a utility system into a dynamic orchestration layer that supports AI-assisted workplace transformation.
 
-In this article, we explore the system's end-to-end design, implementation methodology, AI integration approach, and early-stage results. By combining performance-focused software architecture with intelligent seat allocation, SeatSurfer demonstrates how modern tools can enhance hybrid office efficiency, improve user autonomy, and reduce administrative complexity.
+By combining performance-focused architecture with intelligent seat allocation, SeatSurfer demonstrates how modern tools can not only enhance user autonomy, but also serve broader office management goals—such as balancing space usage, reducing bottlenecks, and enabling informed decision-making through analytics and behavioral modeling.
 
 \section{Literature Review}
 
@@ -129,6 +133,19 @@ Role-based access control is enforced via Spring Security, using JWT tokens for 
 
 Future enhancements include schema-per-tenant support and tenant-specific customization via middleware filters.
 
+\subsection{Simulation Design and Data Generation}
+
+To evaluate the system's recommendation engine, we performed a controlled simulation using synthetically generated booking data. The simulation modeled 60 virtual users across 30 days of hybrid activity, reflecting realistic behavioral traits inspired by existing organizational case studies~\cite{nguyen2023predictive,vasudevan2023smart}.
+
+Each synthetic user was assigned a unique profile with:
+\begin{itemize}
+    \item Temporal preferences (e.g., preferring early vs. late-day bookings)
+    \item Location biases (e.g., favoring window or corner seats)
+    \item Departmental clustering tendencies (simulating teams working near each other)
+\end{itemize}
+
+User satisfaction scores were derived using Likert-scale feedback proxies, simulating post-booking responses based on the alignment between recommended seats and user preferences. This approach, while synthetic, followed methodologies similar to prior work in adaptive system evaluation~\cite{andersen2023ux,li2023cognitive}. Although the results are based on generated data, they provide a representative baseline for assessing the system's practical value and expected user impact.
+
 \section{Results and Discussion}
 
 This section evaluates the technical performance and end-user impact of the SeatSurfer platform, with a focus on scalability, responsiveness, and the integration of AI-driven decision support. Two core dimensions are analyzed: backend performance and the effectiveness of intelligent seat recommendations.
@@ -178,6 +195,8 @@ These findings align with contemporary research in human-centered AI, which emph
 \section{Conclusion}
 
 This paper presents \textbf{SeatSurfer}, a full-stack, AI-enhanced platform designed to meet the evolving needs of hybrid workplace management. By integrating a modular microservice architecture, a Flutter-based cross-platform frontend, and a machine learning recommendation engine, SeatSurfer addresses the key operational challenges of modern work environments—namely fluctuating occupancy, decentralized user behavior, and inefficient seat utilization.
+
+These insights are not only relevant to user experience but also directly support office management by reducing congestion, improving layout utilization, and enabling strategic decisions based on aggregated behavioral patterns.
 
 The system's AI-driven seat suggestions led to measurable gains in booking speed, spatial distribution, and user satisfaction. These benefits demonstrate the viability of intelligent assistance in reducing decision fatigue, promoting equitable space access, and optimizing shared resource use. Moreover, SeatSurfer's technical architecture—centered on RESTful API interactions, tenant-aware database design, and asynchronous service orchestration—provides a scalable foundation adaptable to enterprise-scale deployment or academic experimentation.
 
