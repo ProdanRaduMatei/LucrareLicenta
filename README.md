@@ -73,8 +73,59 @@ A simulated study with **200 users over 30 days** showed:
 
 ## 🚀 Demo
 
-### User Flow (GIFs/Screenshots)
-> Add animated GIFs or screenshots from mobile and web interfaces here
+### 🔐 1. Login / Sign Up Screen
+<img src="https://github.com/ProdanRaduMatei/LucrareLicenta/blob/main/Lucrare/images/login_screen.png" alt="Login Screen" width="25%"/>
+
+This screen allows new users to sign up or existing users to sign in securely. Inputs are validated before submission.
+
+
+### 🗺️ 2. Seat Availability by Floor
+<img src="https://github.com/ProdanRaduMatei/LucrareLicenta/blob/main/Lucrare/images/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20Max%20-%202025-05-19%20at%2019.56.13.png" alt="Login Screen" width="25%"/>
+
+Users can view the layout of a selected storey, see which seats are occupied (red), and which are available (grey).
+
+
+### 📅 3. Upcoming Bookings
+<img src="https://github.com/ProdanRaduMatei/LucrareLicenta/blob/main/Lucrare/images/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20Max%20-%202025-05-19%20at%2020.04.04.png" alt="Login Screen" width="25%"/>
+
+All future seat reservations are listed in chronological order. Each card provides quick access to details and allows deletion.
+
+
+### 🏢 4. Buildings and Storeys Admin View
+<img src="https://github.com/ProdanRaduMatei/LucrareLicenta/blob/main/Lucrare/images/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20Max%20-%202025-05-19%20at%2020.06.31.png" alt="Login Screen" width="25%"/>
+
+Admins can manage buildings and associated storeys in a structured view. Each entry links to occupancy statistics.
+
+
+### 📊 5. Occupancy Statistics for a Storey
+<img src="https://github.com/ProdanRaduMatei/LucrareLicenta/blob/main/Lucrare/images/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20Max%20-%202025-05-19%20at%2020.07.03.png" alt="Login Screen" width="25%"/>
+
+Users can select a date range to view total seats, how many are booked or unbooked, and the occupancy percentage.
+
+
+### 🎨 6. Admin Layout Configuration
+<img src="https://github.com/ProdanRaduMatei/LucrareLicenta/blob/main/Lucrare/images/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20Max%20-%202025-05-19%20at%2020.08.52.png" alt="Login Screen" width="25%"/>
+
+Admins can design custom seat layouts by clicking to toggle seat availability. Supports flexible space planning.
+
+
+### 🔎 7. Booking Details Modal
+<img src="https://github.com/ProdanRaduMatei/LucrareLicenta/blob/main/Lucrare/images/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20Max%20-%202025-05-19%20at%2020.04.14.png" alt="Login Screen" width="25%"/>
+
+When clicking on a booking, users get additional details: seat row, column, and storey name — improving clarity.
+
+
+### 🕓 8. Past and Upcoming Bookings
+<img src="https://github.com/ProdanRaduMatei/LucrareLicenta/blob/main/Lucrare/images/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20Max%20-%202025-05-19%20at%2020.04.30.png" alt="Login Screen" width="25%"/>
+
+All bookings are categorized into upcoming and past ones. Users can track their history and manage future reservations.
+
+
+### 🤖 AI-Powered Seat Suggestion
+<img src="https://github.com/ProdanRaduMatei/LucrareLicenta/blob/main/Lucrare/images/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20Max%20-%202025-07-12%20at%2015.35.08.png" alt="Login Screen" width="25%"/>
+
+
+SeatSurfer includes an AI recommendation engine that suggests the best available seats based on historical booking data, preferred zones, and spatial distribution. This feature reduces decision fatigue and helps optimize occupancy across office layouts.
 
 ---
 
