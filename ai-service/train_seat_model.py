@@ -21,3 +21,6 @@ model.fit(X, y)
 
 joblib.dump(model, 'seat_model.pkl')
 print("✅ Model trained and saved.")
+
+#  python3 seat_suggestion_service.py
+#  python3 train_seat_model.py
